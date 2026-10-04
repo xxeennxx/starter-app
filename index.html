@@ -357,6 +357,83 @@ async function toggleDashboardTask(i){
 }
 function scrollToRoute(){document.getElementById("routePanel").scrollIntoView({behavior:"smooth"})}
 if(sb){sb.auth.onAuthStateChange(()=>updateAuthUI());updateAuthUI()}
+  const RESEND_API_KEY = "ТВОЙ_КЛЮЧ_RE_..."; // Вставь сюда ключ из Шага 1
+const SENDER_EMAIL = "verify@starter.com";  // Письма будут уходить от твоего домена
+
+function generateCode() {
+  return Math.floor(100000 + Math.random() * 900000).toString();
+}
+
+async function sendEmailCode(userEmail, code) {
+  const url = "https://resend.com";
+  
+  const payload = {
+    from: `Starter <${SENDER_EMAIL}>`,
+    to: [userEmail],
+    subject: "🔑 Код подтверждения регистрации",
+    html: `
+      <div style="font-family: sans-serif; padding: 20px; max-width: 500px; border: 1px solid #eee; border-radius: 10px;">
+        <h2>Добро пожаловать!</h2>
+        <p>Ваш код подтверждения для регистрации на сайте:</p>
+        <div style="font-size: 28px; font-weight: bold; color: #4F46E5; background: #F3F4F6; padding: 10px; text-align: center; border-radius: 5px; letter-spacing: 5px; margin: 20px 0;">
+          ${code}
+        </div>
+        <p style="font-size: 12px; color: #666;">Если вы не запрашивали этот код, просто проигнорируйте письмо.</p>
+      </div>
+    `
+  };
+
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Authorization": f"Bearer {RESEND_API_KEY}",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  });
+
+  return response.ok;
+}
+
+export default {
+  async fetch(request, env, ctx) {
+    const corsHeaders = {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type",
+    };
+
+    if (request.method === "OPTIONS") {
+      return new Response(null, { headers: corsHeaders });
+    }
+
+    if (request.method === "POST") {
+      try {
+        const data = await request.json();
+        const userEmail = data.email;
+        
+        if (!userEmail) {
+          return new Response(JSON.stringify({ error: "Email не указан" }), { status: 400, headers: corsHeaders });
+        }
+
+        const code = generateCode();
+        const isSent = await sendEmailCode(userEmail, code);
+        
+        if (isSent) {
+          return new Response(JSON.stringify({ success: true, code: code }), {
+            headers: { ...corsHeaders, "Content-Type": "application/json" }
+          });
+        } else {
+          return new Response(JSON.stringify({ error: "Ошибка отправки шлюза" }), { status: 500, headers: corsHeaders });
+        }
+      } catch (err) {
+        return new Response(JSON.stringify({ error: err.message }), { status: 500, headers: corsHeaders });
+      }
+    }
+
+    return new Response("API active", { status: 200 });
+  }
+};
 </script>
 </body>
 </html>
