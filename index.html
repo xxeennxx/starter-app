@@ -3,508 +3,360 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>СТАРТЕР — найди, что запускать</title>
-<meta name="description" content="СТАРТЕР помогает выбрать подходящее направление для дохода и понять, что делать первым.">
+<title>СТАРТЕР — твой маршрут запуска</title>
+<meta name="description" content="СТАРТЕР помогает выбрать направление дохода и пройти первый 7-дневный маршрут до реального сигнала от рынка.">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-:root{--bg:#07090d;--panel:#0f1319;--panel2:#151b23;--line:#252d38;--text:#f5f7fa;--muted:#98a3b1;--accent:#dfff5a;--accent2:#a8ffdb;--danger:#ff8f8f;--shadow:0 24px 80px rgba(0,0,0,.35)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 10% -10%,#263315 0,transparent 28%),radial-gradient(circle at 90% 0,#14221c 0,transparent 24%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,textarea{font:inherit}.wrap{max-width:1160px;margin:auto;padding:0 22px}
-nav{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06)}.logo{font-size:23px;font-weight:950;letter-spacing:-1px}.navright{display:flex;align-items:center;gap:10px}.pill{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:8px 12px;border-radius:999px}
-.btn{border:0;border-radius:14px;padding:14px 18px;font-weight:900;cursor:pointer}.primary{background:var(--accent);color:#10140a}.secondary{background:transparent;color:#fff;border:1px solid var(--line)}.btn:disabled{opacity:.45;cursor:not-allowed}
-.hero{padding:84px 0 70px;display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center}.eyebrow{color:var(--accent);font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.hero h1{font-size:clamp(48px,7vw,84px);line-height:.9;letter-spacing:-5px;margin:15px 0 24px}.hero p{font-size:19px;line-height:1.6;color:var(--muted);max-width:670px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}.mock{background:linear-gradient(150deg,rgba(24,32,17,.95),rgba(15,19,25,.95));border:1px solid #33412b;border-radius:28px;padding:22px;box-shadow:var(--shadow)}.mocktop{display:flex;gap:6px}.dot{width:8px;height:8px;border-radius:50%;background:#53606d}.mocktitle{font-size:12px;color:var(--muted);margin-top:24px}.mock h3{font-size:34px;letter-spacing:-1.5px;margin:8px 0}.minirow{display:flex;justify-content:space-between;padding:15px 0;border-top:1px solid var(--line);font-size:14px}.minirow b{color:var(--accent)}
-section{padding:72px 0}.sectionhead{max-width:720px}.sectionhead h2{font-size:42px;letter-spacing:-2.5px;margin:9px 0 12px}.sectionhead p{color:var(--muted);font-size:17px;line-height:1.65}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}.card{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:24px}.card h3{margin:9px 0}.card p{color:var(--muted);line-height:1.55}.num{color:var(--accent);font-weight:900}
-#app,#result,#dashboard{display:none;padding:34px 0 90px}.apphead{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:22px}.apphead h2{font-size:38px;letter-spacing:-2px;margin:5px 0}.small{font-size:13px;color:var(--muted);line-height:1.55}.progress{height:7px;background:#20262f;border-radius:99px;overflow:hidden;margin:18px 0 28px}.bar{height:100%;width:0;background:var(--accent);transition:.25s}.quizgrid{display:grid;grid-template-columns:215px 1fr;gap:18px}.steps{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:12px;height:max-content;position:sticky;top:15px}.step{padding:10px;border-radius:10px;color:var(--muted);font-size:12px;margin:3px 0}.step.active{background:#202832;color:#fff}.step.done{color:var(--accent)}.qcard{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:30px}.qnum{color:var(--accent);font-size:12px;font-weight:900}.qtitle{font-size:31px;letter-spacing:-1.4px;margin:8px 0}.hint{color:var(--muted);line-height:1.55;margin:0 0 20px}.options{display:grid;grid-template-columns:1fr 1fr;gap:10px}.opt{background:var(--panel2);border:1px solid #303946;color:#fff;border-radius:15px;padding:15px;text-align:left;cursor:pointer;min-height:58px}.opt:hover{border-color:#647083}.opt.selected{border-color:var(--accent);background:#1b2414}.opt small{display:block;color:var(--muted);margin-top:4px}.custom{margin-top:12px;width:100%;background:#0b0e13;border:1px solid #303946;border-radius:13px;color:#fff;padding:13px;display:none}.footer-actions{display:flex;justify-content:space-between;gap:10px;margin-top:24px}
-.resulttop{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;margin-bottom:20px}.resulttop h2{font-size:42px;letter-spacing:-2.5px;margin:7px 0}.resultgrid{display:grid;grid-template-columns:minmax(0,1.5fr) 320px;gap:16px}.resultmain{background:var(--panel);border:1px solid var(--line);border-radius:25px;padding:28px}.route{font-size:12px;color:var(--accent);text-transform:uppercase;letter-spacing:.13em;font-weight:900}.mainidea{background:linear-gradient(145deg,#18210f,#11161d);border:1px solid #3b5030;border-radius:22px;padding:25px;margin-bottom:18px}.mainidea h3{font-size:32px;letter-spacing:-1.5px;margin:7px 0}.desc{color:#c1cbd3;line-height:1.6}.why{display:grid;gap:8px;margin-top:15px}.why div{padding:11px 13px;background:#121820;border:1px solid var(--line);border-radius:12px}.ideas{display:grid;gap:10px;margin-top:16px}.idea{border:1px solid var(--line);background:#11161d;border-radius:17px;padding:17px}.idea h4{font-size:19px;margin:0 0 7px}.idea .meta{display:flex;gap:7px;flex-wrap:wrap;margin:9px 0}.chip{font-size:11px;color:#dce3e8;background:#1d242d;padding:6px 9px;border-radius:999px}.idea-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.side{display:grid;gap:15px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:21px}.panel h3{margin:5px 0 12px}.task{display:flex;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}.task:last-child{border-bottom:0}.check{appearance:none;width:20px;height:20px;border:1px solid #596575;border-radius:6px;margin-top:2px;cursor:pointer}.check:checked{background:var(--accent);box-shadow:inset 0 0 0 4px #11151b}.task.done span{text-decoration:line-through;color:#7f8a97}.taskbar{height:6px;background:#252c35;border-radius:99px;overflow:hidden;margin-top:13px}.taskbar i{display:block;height:100%;width:0;background:var(--accent);transition:.25s}.emptyfit{margin-top:15px;border:1px dashed #48525e;border-radius:18px;padding:18px;background:#0d1116}.emptyfit b{display:block;margin-bottom:5px}
-.dashboardgrid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}.stat{font-size:38px;font-weight:950;letter-spacing:-2px}.accountbox{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px;background:#121820;border:1px solid var(--line);border-radius:14px}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}.modalbox{width:min(460px,100%);background:#10151c;border:1px solid #313b48;border-radius:24px;padding:25px;box-shadow:var(--shadow)}.modalbox h3{font-size:27px;letter-spacing:-1px;margin:0 0 8px}.field{margin-top:13px}.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}.field input{width:100%;background:#0b0e13;border:1px solid #303946;color:#fff;border-radius:12px;padding:13px}.modalactions{display:flex;gap:9px;margin-top:17px}.notice{margin-top:12px;padding:11px 12px;border-radius:11px;background:#171d25;color:#aeb8c4;font-size:12px;line-height:1.5}.footer{padding:30px 0 60px;color:#66717e;font-size:12px}
-@media(max-width:850px){.hero,.quizgrid,.resultgrid,.dashboardgrid{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.steps{display:none}.options{grid-template-columns:1fr}.hero h1{letter-spacing:-3px}.apphead,.resulttop{flex-direction:column;align-items:flex-start}}
-
-/* ===== V10 VISUAL SYSTEM ===== */
-:root{--accent:#dfff5a;--accent2:#9ef0ff;--card:#10151c;--card2:#141b24;--soft:#1b232e}
-body{background:
-radial-gradient(900px 500px at 10% -10%,rgba(223,255,90,.10),transparent 55%),
-radial-gradient(800px 500px at 90% 0%,rgba(158,240,255,.08),transparent 55%),
-#07090d}
-nav{position:sticky;top:0;z-index:20;background:rgba(7,9,13,.72);backdrop-filter:blur(18px)}
-.logo{display:flex;align-items:center;gap:9px}.logo:before{content:"";width:11px;height:11px;background:var(--accent);border-radius:4px;box-shadow:0 0 28px rgba(223,255,90,.65)}
-.hero{min-height:690px}.hero h1{max-width:780px;text-wrap:balance}.hero p{max-width:610px}
-.hero:before{content:"";position:absolute;inset:76px 0 auto;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);pointer-events:none}
-.mock{position:relative;overflow:hidden}.mock:after{content:"";position:absolute;width:240px;height:240px;border-radius:50%;background:rgba(223,255,90,.08);filter:blur(35px);right:-80px;bottom:-90px}
-.card,.panel,.qcard,.resultmain,.steps{box-shadow:0 12px 40px rgba(0,0,0,.12)}
-.card:hover,.idea:hover{transform:translateY(-2px);border-color:#3b4654;transition:.2s}
-.btn.primary{box-shadow:0 8px 30px rgba(223,255,90,.13)}
-.btn.primary:hover{transform:translateY(-1px);filter:brightness(1.04)}
-.hero .eyebrow,.route{font-weight:950}
-.dashboard-shell{display:grid;grid-template-columns:1.55fr .75fr;gap:16px;margin-top:20px}
-.dash-hero{background:linear-gradient(145deg,#18210f 0%,#11171d 65%);border:1px solid #394a2b;border-radius:28px;padding:28px;position:relative;overflow:hidden}
-.dash-hero:after{content:"";position:absolute;width:280px;height:280px;border-radius:50%;right:-100px;top:-130px;background:rgba(223,255,90,.08);filter:blur(10px)}
-.dash-kicker{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--accent);font-weight:950}
-.dash-hero h3{font-size:42px;line-height:1;letter-spacing:-2.4px;margin:10px 0}
-.dash-hero p{max-width:690px;color:#bdc7d0;line-height:1.6}
-.dash-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}
-.statcard{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:22px}
-.statrow{display:flex;justify-content:space-between;align-items:end;gap:10px}.statbig{font-size:42px;font-weight:950;letter-spacing:-2px}.statlabel{color:var(--muted);font-size:12px}
-.route-list{display:grid;gap:10px;margin-top:15px}
-.route-day{display:grid;grid-template-columns:55px 1fr auto;gap:13px;align-items:center;background:#11171e;border:1px solid var(--line);border-radius:17px;padding:14px}
-.route-day.active{border-color:#52643b;background:#151d13}.route-day.done{opacity:.72}.daynum{width:40px;height:40px;border-radius:13px;background:#202731;display:grid;place-items:center;font-weight:950}.route-day.active .daynum{background:var(--accent);color:#0c1107}.route-title{font-weight:850}.route-sub{font-size:12px;color:var(--muted);margin-top:4px}.route-status{font-size:11px;color:var(--muted);white-space:nowrap}.route-status.done{color:var(--accent)}
-.profile-card{display:grid;gap:12px}.profile-line{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:13px}.profile-line:last-child{border-bottom:0}.profile-line span{color:var(--muted)}
-.dash-nav{display:flex;gap:8px;overflow:auto;margin:20px 0 0}.dash-tab{padding:9px 12px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:12px;cursor:pointer;white-space:nowrap}.dash-tab.active{background:#1b232d;color:#fff;border-color:#46515e}
-.metricbar{height:8px;background:#252c35;border-radius:99px;overflow:hidden;margin-top:10px}.metricbar i{display:block;height:100%;background:var(--accent)}
-@media(max-width:850px){.dashboard-shell{grid-template-columns:1fr}.dash-hero h3{font-size:34px}.route-day{grid-template-columns:45px 1fr}.route-status{grid-column:2}.hero{min-height:auto}}
+:root{
+  --ink:#171719;--muted:#6d6b70;--paper:#f7f4ec;--white:#fffdf8;
+  --lime:#d9ff4f;--lime2:#efffb0;--coral:#ff725e;--purple:#7457ff;
+  --blue:#6ed9ff;--yellow:#ffd95a;--line:#e4dfd3;--shadow:0 20px 60px rgba(35,29,17,.10);
+  --radius:26px
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,textarea{font:inherit}button{cursor:pointer}
+body:before{content:"";position:fixed;z-index:-1;width:500px;height:500px;left:-180px;top:-180px;background:radial-gradient(circle,#e6ff6d 0,rgba(230,255,109,.35) 35%,transparent 70%);filter:blur(15px)}
+body:after{content:"";position:fixed;z-index:-1;width:600px;height:600px;right:-250px;top:25%;background:radial-gradient(circle,rgba(116,87,255,.16),transparent 65%);filter:blur(20px)}
+.wrap{max-width:1180px;margin:auto;padding:0 24px}
+nav{height:82px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(23,23,25,.09)}
+.logo{display:flex;align-items:center;gap:10px;font-weight:1000;font-size:24px;letter-spacing:-1.5px}
+.logoMark{width:30px;height:30px;border-radius:10px;background:var(--ink);position:relative;transform:rotate(-7deg)}
+.logoMark:after{content:"";position:absolute;width:11px;height:11px;border-radius:50%;background:var(--lime);right:5px;top:5px}
+.navright{display:flex;align-items:center;gap:10px}.pill{font-size:11px;font-weight:800;padding:8px 11px;border-radius:999px;background:var(--white);border:1px solid var(--line)}
+.btn{border:0;border-radius:15px;padding:14px 18px;font-weight:900;transition:.18s;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn:hover{transform:translateY(-2px)}.primary{background:var(--ink);color:white;box-shadow:0 10px 24px rgba(23,23,25,.13)}.primary:hover{box-shadow:0 14px 30px rgba(23,23,25,.18)}.lime{background:var(--lime);color:var(--ink)}.secondary{background:var(--white);color:var(--ink);border:1px solid var(--line)}.ghost{background:transparent;color:var(--ink)}.danger{background:#ffe5e1;color:#a82d20}.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.hero{padding:75px 0 80px;display:grid;grid-template-columns:1.08fr .92fr;gap:58px;align-items:center}
+.kicker{display:inline-flex;gap:7px;align-items:center;font-size:11px;text-transform:uppercase;letter-spacing:.13em;font-weight:1000}
+.kicker i{width:7px;height:7px;border-radius:50%;background:var(--coral);display:block}
+.hero h1{font-size:clamp(48px,7vw,88px);line-height:.88;letter-spacing:-6px;margin:17px 0 25px;max-width:760px}
+.hero h1 em{font-style:normal;position:relative;z-index:0}.hero h1 em:after{content:"";position:absolute;height:17px;left:-4px;right:-5px;bottom:3px;background:var(--lime);z-index:-1;transform:rotate(-1deg)}
+.lead{font-size:19px;line-height:1.65;color:#55535a;max-width:680px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:27px}
+.trust{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px;color:#77736d;font-size:12px}.trust span{background:rgba(255,253,248,.7);border:1px solid var(--line);padding:7px 10px;border-radius:999px}
+.heroCard{position:relative}.blob{position:absolute;inset:-20px -30px -25px 20px;background:linear-gradient(145deg,#dfff68,#9df0ff 55%,#bba8ff);border-radius:40px;transform:rotate(4deg);z-index:-1;opacity:.8}
+.preview{background:rgba(255,253,248,.91);border:1px solid rgba(255,255,255,.8);border-radius:31px;padding:22px;box-shadow:var(--shadow);backdrop-filter:blur(15px)}
+.previewTop{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.miniLogo{font-weight:1000}.live{font-size:10px;font-weight:900;background:#eaff9b;padding:7px 9px;border-radius:999px}
+.routeCard{background:var(--ink);color:#fff;border-radius:23px;padding:23px;position:relative;overflow:hidden}.routeCard:after{content:"";position:absolute;width:150px;height:150px;border-radius:50%;right:-55px;top:-55px;background:var(--purple);opacity:.7;filter:blur(4px)}
+.routeSmall{font-size:10px;color:#c2c1c5;text-transform:uppercase;letter-spacing:.13em;font-weight:900}.routeCard h3{font-size:28px;letter-spacing:-1.5px;margin:8px 0 18px;position:relative;z-index:1}.routeLine{height:8px;background:#39383d;border-radius:99px;overflow:hidden;position:relative;z-index:1}.routeLine b{display:block;height:100%;width:58%;background:var(--lime);border-radius:99px}
+.previewRows{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}.previewRow{background:#f4f0e8;border-radius:15px;padding:13px}.previewRow small{color:#77736d;display:block;font-size:10px}.previewRow b{font-size:17px;margin-top:4px;display:block}
+section{padding:76px 0}.sectionHead{max-width:730px}.sectionHead h2{font-size:46px;line-height:1;letter-spacing:-3px;margin:11px 0 15px}.sectionHead p{font-size:17px;color:var(--muted);line-height:1.65}
+.featureGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:31px}.feature{padding:25px;border-radius:23px;background:var(--white);border:1px solid var(--line);box-shadow:0 8px 30px rgba(40,30,10,.035);min-height:200px}.feature:nth-child(2){background:#ecffd1}.feature:nth-child(3){background:#e9e4ff}.featureNum{font-size:11px;font-weight:1000;color:#77736d}.feature h3{font-size:22px;letter-spacing:-1px;margin:35px 0 8px}.feature p{color:var(--muted);line-height:1.55;margin:0}
+#app,#result,#dashboard{display:none;padding:35px 0 100px}.appHead,.topLine{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:20px}.appHead h2,.topLine h2{font-size:42px;letter-spacing:-2.5px;margin:5px 0 8px}.small{font-size:13px;color:var(--muted);line-height:1.55}.progress{height:9px;background:#e4dfd3;border-radius:99px;overflow:hidden;margin:18px 0 28px}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--lime),#8ce3ff,var(--purple));transition:.3s}
+.quizGrid{display:grid;grid-template-columns:215px 1fr;gap:17px}.steps{background:rgba(255,253,248,.72);border:1px solid var(--line);border-radius:20px;padding:10px;height:max-content;position:sticky;top:15px}.step{padding:10px;border-radius:11px;color:#8a8780;font-size:11px;margin:3px 0}.step.active{background:var(--ink);color:white}.step.done{color:#5e7400;font-weight:800}
+.qcard{background:var(--white);border:1px solid var(--line);border-radius:28px;padding:31px;box-shadow:var(--shadow)}.qnum{color:#6e7e00;font-size:11px;font-weight:1000;letter-spacing:.12em}.qtitle{font-size:33px;line-height:1.05;letter-spacing:-1.8px;margin:9px 0}.hint{color:var(--muted);line-height:1.55;margin:0 0 21px}.options{display:grid;grid-template-columns:1fr 1fr;gap:10px}.opt{background:#f8f5ee;border:1px solid #e1dbce;color:var(--ink);border-radius:16px;padding:15px;text-align:left;min-height:59px;transition:.15s}.opt:hover{border-color:#9da86e;transform:translateY(-1px)}.opt.selected{background:#ecffc2;border-color:#a8c32c;box-shadow:inset 0 0 0 1px #a8c32c}.opt small{display:block;color:#89857e;margin-top:3px}.custom{margin-top:12px;width:100%;background:#faf8f2;border:1px solid #ddd6c9;border-radius:14px;padding:13px;display:none;resize:vertical;min-height:80px}.footerActions{display:flex;justify-content:space-between;gap:10px;margin-top:24px}
+.resultHero{background:var(--ink);color:white;border-radius:32px;padding:33px;position:relative;overflow:hidden;margin-bottom:17px}.resultHero:after{content:"";position:absolute;width:360px;height:360px;right:-110px;top:-180px;border-radius:50%;background:linear-gradient(135deg,var(--lime),var(--blue));filter:blur(2px);opacity:.9}.resultHero>*{position:relative;z-index:1}.resultHero .kicker{color:var(--lime)}.resultHero h2{font-size:48px;letter-spacing:-3px;max-width:760px;margin:8px 0 13px}.resultHero p{color:#c8c7ca;max-width:730px;line-height:1.6}.resultGrid{display:grid;grid-template-columns:minmax(0,1.45fr) 340px;gap:16px}.mainCard,.sideCard{background:var(--white);border:1px solid var(--line);border-radius:25px;padding:25px}.direction{background:linear-gradient(135deg,#efffc5,#e5faff 65%,#f0eaff);border:1px solid #dce6b2;border-radius:22px;padding:23px;margin-bottom:15px}.direction h3{font-size:31px;letter-spacing:-1.5px;margin:6px 0 8px}.routeTag{font-size:10px;font-weight:1000;text-transform:uppercase;letter-spacing:.14em;color:#687400}.desc{color:#5e5b60;line-height:1.6}.meta{display:flex;gap:7px;flex-wrap:wrap;margin:13px 0}.chip{font-size:10px;font-weight:800;padding:7px 9px;background:rgba(255,255,255,.65);border:1px solid rgba(0,0,0,.07);border-radius:999px}.why{display:grid;gap:8px;margin-top:14px}.why div{background:rgba(255,255,255,.55);border:1px solid rgba(0,0,0,.07);padding:11px 12px;border-radius:12px;font-size:13px}
+.altTitle{font-size:22px;letter-spacing:-1px;margin:20px 0 11px}.ideas{display:grid;gap:10px}.idea{border:1px solid var(--line);background:#fcfaf5;border-radius:18px;padding:17px}.idea h4{font-size:19px;margin:0 0 7px}.idea p{color:var(--muted);line-height:1.5;font-size:13px}.ideaActions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}.emptyFit{margin-top:12px;border:1px dashed #c9c0b0;border-radius:18px;padding:17px;background:#fff9e5}.emptyFit b{display:block;margin-bottom:5px}
+.sideStack{display:grid;gap:14px}.sideCard h3{margin:4px 0 13px}.today{background:#fff4ec}.task{display:flex;gap:10px;padding:11px 0;border-bottom:1px solid rgba(0,0,0,.08);align-items:flex-start}.task:last-child{border-bottom:0}.check{appearance:none;width:20px;height:20px;border:1px solid #8e887d;border-radius:6px;margin-top:1px;flex:0 0 auto;background:#fff}.check:checked{background:var(--lime);box-shadow:inset 0 0 0 4px var(--ink)}.task.done span{text-decoration:line-through;color:#9a958c}.taskbar{height:7px;background:#e3ddd1;border-radius:99px;overflow:hidden;margin-top:13px}.taskbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--coral),var(--yellow),var(--lime));transition:.25s}
+.tomorrow{background:linear-gradient(135deg,#e9e4ff,#f8efff)}.tomorrow .big{font-size:23px;font-weight:950;letter-spacing:-1px}.score{display:flex;align-items:center;gap:13px;margin-top:13px}.ring{width:55px;height:55px;border-radius:50%;background:conic-gradient(var(--purple) 0 58%,#ded8ef 58% 100%);display:grid;place-items:center}.ring:after{content:"58%";width:42px;height:42px;background:#f0ebff;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:1000}
+.timeline{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:17px}.day{background:#f3efe7;border:1px solid var(--line);border-radius:14px;padding:11px;min-height:91px}.day.done{background:#efffc4;border-color:#d2e880}.day.current{background:#1d1d1f;color:#fff}.dayNum{font-size:10px;font-weight:1000}.dayName{font-size:12px;font-weight:850;margin-top:13px}.dayStatus{font-size:9px;color:#8a867e;margin-top:5px}.day.current .dayStatus{color:#c8c7ca}
+.dashboardTop{display:grid;grid-template-columns:1.1fr .9fr;gap:15px}.dashHero{background:var(--ink);color:#fff;border-radius:31px;padding:30px;position:relative;overflow:hidden}.dashHero:after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-80px;bottom:-120px;background:var(--lime);filter:blur(2px);opacity:.9}.dashHero>*{position:relative;z-index:1}.dashHero .kicker{color:var(--lime)}.dashHero h2{font-size:45px;letter-spacing:-2.8px;margin:7px 0}.dashHero p{color:#c7c6c9;line-height:1.55}.dashStat{background:var(--white);border:1px solid var(--line);border-radius:25px;padding:25px}.dashStat .big{font-size:53px;font-weight:1000;letter-spacing:-4px}.dashStat p{color:var(--muted);line-height:1.5}.routePanel{background:var(--white);border:1px solid var(--line);border-radius:26px;padding:25px;margin-top:15px}.routePanelHead{display:flex;justify-content:space-between;gap:15px;align-items:end}.routePanel h3{font-size:27px;letter-spacing:-1.2px;margin:5px 0}.routeDays{display:grid;gap:9px;margin-top:18px}.routeDay{display:grid;grid-template-columns:50px 1fr auto;align-items:center;gap:13px;border:1px solid var(--line);border-radius:17px;padding:13px 15px;background:#fcfaf5}.routeDay.done{background:#f0ffc8;border-color:#d6e990}.routeDayNum{width:39px;height:39px;border-radius:12px;background:#eee9df;display:grid;place-items:center;font-weight:1000}.routeDay.done .routeDayNum{background:var(--lime)}.routeDay b{display:block}.routeDay small{color:var(--muted)}.routeDay .status{font-size:10px;font-weight:900}
+.modal{position:fixed;inset:0;background:rgba(23,23,25,.52);backdrop-filter:blur(13px);display:none;align-items:center;justify-content:center;padding:18px;z-index:100}.modalBox{width:min(480px,100%);background:var(--white);border:1px solid rgba(255,255,255,.8);border-radius:29px;padding:27px;box-shadow:0 30px 100px rgba(0,0,0,.25)}.modalTop{display:flex;justify-content:space-between;align-items:start}.modalBox h3{font-size:30px;letter-spacing:-1.5px;margin:0 0 7px}.close{border:0;background:#f0ece4;border-radius:50%;width:36px;height:36px;font-weight:900}.tabs{display:flex;background:#eee9df;padding:4px;border-radius:13px;margin-top:18px}.tab{border:0;background:transparent;flex:1;padding:10px;border-radius:10px;font-weight:900;color:#77736d}.tab.active{background:#fff;color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.06)}.field{margin-top:13px}.field label{display:block;font-size:11px;font-weight:850;color:#77736d;margin-bottom:6px}.field input{width:100%;background:#f4f1e9;border:1px solid #ddd7cb;color:var(--ink);border-radius:13px;padding:14px;outline:none}.field input:focus{border-color:#a8bf38;box-shadow:0 0 0 3px #efffc1}.modalActions{display:flex;gap:8px;margin-top:17px}.notice{margin-top:12px;padding:11px 12px;border-radius:12px;background:#f2eee6;color:#6d6962;font-size:12px;line-height:1.5}.notice.error{background:#ffe9e5;color:#9c2d22}.notice.good{background:#edffc8;color:#586800}
+.footer{padding:35px 0 65px;color:#8a857b;font-size:11px;border-top:1px solid rgba(0,0,0,.07)}
+@media(max-width:900px){.hero,.quizGrid,.resultGrid,.dashboardTop{grid-template-columns:1fr}.featureGrid{grid-template-columns:1fr}.steps{display:none}.timeline{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:620px){.wrap{padding:0 15px}.hero{padding:52px 0}.hero h1{font-size:54px;letter-spacing:-4px}.hero h1 em:after{height:11px}.sectionHead h2{font-size:36px}.options{grid-template-columns:1fr}.qcard{padding:22px}.qtitle{font-size:28px}.appHead,.topLine{flex-direction:column}.resultHero h2{font-size:35px}.resultGrid{gap:11px}.timeline{grid-template-columns:repeat(2,1fr)}.navright .pill{display:none}.routeDay{grid-template-columns:43px 1fr}.routeDay .status{grid-column:2}.previewRows{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
 <div class="wrap">
 <nav>
-  <div class="logo">СТАРТЕР</div>
+  <div class="logo"><span class="logoMark"></span>СТАРТЕР</div>
   <div class="navright">
-    <span class="pill">тестовая версия</span>
+    <span class="pill">v11 • тестируем на людях</span>
     <button class="btn secondary" id="authBtn" onclick="openAuth()">Войти</button>
   </div>
 </nav>
 
 <main id="landing">
 <section class="hero">
-<div>
-  <div class="eyebrow">V10 • Не мотивация. Маршрут.</div>
-  <h1>Пойми, что запускать. И что делать дальше.</h1>
-  <p>СТАРТЕР собирает твой контекст, предлагает несколько реалистичных направлений и превращает выбранное направление в первый конкретный шаг.</p>
-  <div class="actions"><button class="btn primary" onclick="openApp()">Пройти диагностику</button><button class="btn secondary" onclick="document.getElementById('how').scrollIntoView()">Как это работает</button></div>
-  <p class="small" style="margin-top:14px">Сейчас бесплатно. Мы проверяем, реально ли продукт помогает людям двигаться дальше.</p>
-</div>
-<div class="mock">
-  <div class="mocktop"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
-  <div class="mocktitle">ТВОЙ СТАРТ</div>
-  <h3>3 подходящих пути</h3>
-  <div class="minirow"><span>Главный вариант</span><b>подобран</b></div>
-  <div class="minirow"><span>Первое действие</span><b>сегодня</b></div>
-  <div class="minirow"><span>Прогресс</span><b>сохраняется</b></div>
-</div>
+  <div>
+    <div class="kicker"><i></i> персональный маршрут запуска</div>
+    <h1>Не ищи <em>идеальную идею.</em> Найди свой следующий ход.</h1>
+    <p class="lead">СТАРТЕР учитывает твои деньги, время, навыки, интересы и ограничения — потом даёт несколько нормальных направлений и ведёт по одному конкретному маршруту.</p>
+    <div class="actions">
+      <button class="btn lime" onclick="openApp()">Пройти диагностику <span>↗</span></button>
+      <button class="btn secondary" onclick="document.getElementById('how').scrollIntoView()">Посмотреть как работает</button>
+    </div>
+    <div class="trust"><span>15 вопросов</span><span>3 подходящих пути</span><span>7 дней до первого сигнала</span></div>
+  </div>
+  <div class="heroCard">
+    <div class="blob"></div>
+    <div class="preview">
+      <div class="previewTop"><span class="miniLogo">ТВОЙ СТАРТ</span><span class="live">LIVE ROUTE</span></div>
+      <div class="routeCard">
+        <div class="routeSmall">главное направление</div>
+        <h3>AI и автоматизация</h3>
+        <div class="routeLine"><b></b></div>
+        <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:10px;color:#c5c4c8"><span>День 4 из 7</span><b style="color:#dfff5a">58%</b></div>
+      </div>
+      <div class="previewRows">
+        <div class="previewRow"><small>СЕГОДНЯ</small><b>3 действия</b></div>
+        <div class="previewRow"><small>ЗАВТРА</small><b>Первые 10</b></div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="how">
-<div class="sectionhead"><div class="eyebrow">Как работает</div><h2>Не выдаём тебе 100 идей. Помогаем выбрать из нормальных.</h2><p>Сначала собираем деньги, время, навыки, интересы, ограничения, отношение к продажам и цель. Затем выдаём главный путь и ещё два варианта — с человеческим описанием, как на этом зарабатывать и что может не понравиться.</p></div>
-<div class="grid">
-<div class="card"><div class="num">01</div><h3>Диагностика</h3><p>15 вопросов. Можно выбирать несколько вариантов и дописывать своё.</p></div>
-<div class="card"><div class="num">02</div><h3>Три пути</h3><p>Главный вариант + две альтернативы. Не понравился ни один — можно запустить другой поиск.</p></div>
-<div class="card"><div class="num">03</div><h3>Действия</h3><p>Получаешь три действия на сегодня и можешь сохранить результат в аккаунте.</p></div>
-</div>
+  <div class="sectionHead">
+    <div class="kicker"><i></i> не генератор идей</div>
+    <h2>СТАРТЕР должен двигать тебя вперёд, а не впечатлять текстом.</h2>
+    <p>Поэтому результат превращается в маршрут: сегодня — конкретная задача, завтра — следующий шаг, через неделю — честный разбор того, появился ли спрос.</p>
+  </div>
+  <div class="featureGrid">
+    <div class="feature"><div class="featureNum">01 / ДИАГНОСТИКА</div><h3>Сначала понять тебя</h3><p>Не только «что умеешь», но и что бесит, сколько времени есть и как быстро хочется проверить идею.</p></div>
+    <div class="feature"><div class="featureNum">02 / ВЫБОР</div><h3>Три пути вместо одного</h3><p>Главный вариант + две альтернативы. Не нравится вообще — запускаем другой угол поиска.</p></div>
+    <div class="feature"><div class="featureNum">03 / ДЕЙСТВИЕ</div><h3>7 дней без болтовни</h3><p>Маршрут построен вокруг первого сигнала рынка, а не вокруг бесконечной подготовки.</p></div>
+  </div>
 </section>
 </main>
 
 <section id="app">
-<div class="apphead">
-<div><div class="eyebrow">Диагностика</div><h2>Соберём твой профиль</h2><div class="small">Отвечай честно. Здесь нет «правильных» ответов.</div></div>
-<button class="btn secondary" onclick="closeApp()">На главную</button>
-</div>
-<div class="progress"><div class="bar" id="bar"></div></div>
-<div class="quizgrid">
-<div class="steps" id="steps"></div>
-<div class="qcard">
-<div class="qnum" id="qnum"></div><div class="qtitle" id="qtitle"></div><p class="hint" id="qhint"></p>
-<div id="options" class="options"></div>
-<textarea id="custom" class="custom" rows="3" placeholder="Напиши свой вариант..."></textarea>
-<div class="footer-actions"><button id="back" class="btn secondary" onclick="prevQ()">← Назад</button><button id="next" class="btn primary" onclick="nextQ()">Дальше →</button></div>
-</div>
-</div>
+  <div class="appHead">
+    <div><div class="kicker"><i></i> диагностика</div><h2>Соберём твой профиль.</h2><div class="small">Честные ответы дают намного более полезный маршрут.</div></div>
+    <button class="btn secondary" onclick="closeApp()">На главную</button>
+  </div>
+  <div class="progress"><div class="bar" id="bar"></div></div>
+  <div class="quizGrid">
+    <div class="steps" id="steps"></div>
+    <div class="qcard">
+      <div class="qnum" id="qnum"></div><div class="qtitle" id="qtitle"></div><p class="hint" id="qhint"></p>
+      <div id="options" class="options"></div>
+      <textarea id="custom" class="custom" rows="3" placeholder="Напиши свой вариант..."></textarea>
+      <div class="footerActions"><button id="back" class="btn secondary" onclick="prevQ()">← Назад</button><button id="next" class="btn primary" onclick="nextQ()">Дальше →</button></div>
+    </div>
+  </div>
 </section>
 
 <section id="result">
-<div class="resulttop">
-<div><div class="eyebrow">Готово</div><h2>Мы нашли не «идею». Мы нашли варианты старта.</h2><div class="small">Выбирай тот путь, которым реально готов заниматься. Если ни один не заходит — не заставляем.</div></div>
-<button class="btn secondary" onclick="resetApp()">Пройти заново</button>
-</div>
-<div class="resultgrid">
-<div class="resultmain">
-  <div class="mainidea" id="mainIdea"></div>
-  <h3>Ещё два варианта</h3>
-  <div class="ideas" id="altIdeas"></div>
-  <div class="emptyfit">
-    <b>😐 Мне вообще не нравится ни один вариант</b>
-    <span class="small">Тогда меняем угол поиска: убираем текущие направления и показываем другие модели, которые меньше похожи на первые рекомендации.</span>
-    <div style="margin-top:11px"><button class="btn secondary" onclick="showFreshIdeas()">Показать другие идеи</button></div>
+  <div class="resultHero">
+    <div class="kicker">готово • твой стартовый профиль</div>
+    <h2>Теперь у тебя есть не просто идея. Есть причина вернуться завтра.</h2>
+    <p>Выбери путь, который тебе реально хочется проверить. Мы не заставляем тебя влюбляться в рекомендацию — задача первой недели намного проще: получить настоящий сигнал от людей.</p>
   </div>
-  <div class="panel" style="margin-top:16px">
-    <div class="route">Твой первый тест</div>
-    <h3>Не строй бизнес. Добейся одного «да».</h3>
-    <p class="small">Первая цель — получить реальный сигнал от потенциального клиента. Один ответ «интересно, расскажи» полезнее десяти часов размышлений.</p>
-    <button class="btn primary" onclick="focusTasks()">Перейти к действиям →</button>
+  <div class="resultGrid">
+    <div class="mainCard">
+      <div id="mainIdea"></div>
+      <div class="altTitle">Ещё два варианта</div>
+      <div class="ideas" id="altIdeas"></div>
+      <div class="emptyFit"><b>😐 Мне вообще не нравится ни один вариант</b><span class="small">Окей. Не будем толкать тебя в чужую жизнь. Покажем другие модели.</span><div style="margin-top:11px"><button class="btn secondary" onclick="showFreshIdeas()">Показать другие идеи</button></div></div>
+    </div>
+    <div class="sideStack">
+      <div class="sideCard today">
+        <div class="routeTag">сегодня</div><h3>Три действия</h3>
+        <div id="tasks"></div>
+        <div class="taskbar"><i id="taskbar"></i></div>
+        <div style="display:flex;justify-content:space-between;margin-top:7px"><span class="small">Готово</span><b id="taskpct">0%</b></div>
+      </div>
+      <div class="sideCard tomorrow">
+        <div class="routeTag">зачем возвращаться</div><h3>Завтра тебя ждёт</h3>
+        <div class="big">первые 10 потенциальных клиентов</div>
+        <p class="small">СТАРТЕР не заканчивается на результате. Следующий шаг появляется после выполнения текущего.</p>
+      </div>
+      <div class="sideCard">
+        <div class="routeTag">прогресс</div><div class="score"><div class="ring"></div><div><b>Неделя запуска</b><div class="small">День 1 из 7</div></div></div>
+        <div class="timeline" id="resultTimeline"></div>
+      </div>
+      <div class="sideCard"><div class="routeTag">сохранить</div><h3>Хочешь вернуться завтра?</h3><p class="small">Создай аккаунт — маршрут и выполненные шаги останутся с тобой.</p><button class="btn lime" onclick="openAuth()">Сохранить мой маршрут</button></div>
+    </div>
   </div>
-</div>
-<div class="side">
-  <div class="panel">
-    <div class="route">Сегодня</div><h3>Три действия</h3>
-    <div id="tasks"></div>
-    <div class="taskbar"><i id="taskbar"></i></div>
-    <div style="display:flex;justify-content:space-between;margin-top:7px"><span class="small">Прогресс</span><b id="taskpct">0%</b></div>
-  </div>
-  <div class="panel">
-    <div class="route">Профиль</div>
-    <h3 id="profileLabel">Результат пока локальный</h3>
-    <p class="small">Войди в аккаунт, чтобы сохранить диагностику, задачи и вернуться к ним позже.</p>
-    <button class="btn secondary" onclick="openAuth()">Войти / создать аккаунт</button>
-  </div>
-</div>
-</div>
 </section>
 
 <section id="dashboard">
-<div class="resulttop">
-<div><div class="eyebrow">Личный кабинет</div><h2>Твой СТАРТЕР</h2><div class="small">Здесь не просто хранится результат. Здесь лежит твой следующий шаг.</div></div>
-<button class="btn secondary" onclick="signOut()">Выйти</button>
-</div>
-
-<div class="dashboard-shell">
-  <div>
-    <div class="dash-hero">
-      <div class="dash-kicker">Твой текущий маршрут</div>
-      <h3 id="dashMain">Пока нет маршрута</h3>
-      <p id="dashIntro">Пройди диагностику, чтобы СТАРТЕР собрал для тебя направление и разложил первые 7 дней по шагам.</p>
-      <div class="dash-actions">
-        <button class="btn primary" onclick="openApp()">Пройти диагностику заново</button>
-        <button class="btn secondary" onclick="document.getElementById('dashRoute').scrollIntoView({behavior:'smooth'})">Открыть маршрут ↓</button>
-      </div>
-    </div>
-
-    <div class="dash-nav">
-      <span class="dash-tab active">Маршрут 7 дней</span>
-      <span class="dash-tab">Следующий шаг</span>
-      <span class="dash-tab">История — скоро</span>
-    </div>
-
-    <div class="panel" id="dashRoute" style="margin-top:10px">
-      <div class="route">7 дней → первый реальный сигнал</div>
-      <h3>Не строим империю. Проверяем, есть ли спрос.</h3>
-      <p class="small">Каждый день должен двигать тебя ближе к реальному клиенту, а не к бесконечному изучению темы.</p>
-      <div class="route-list" id="routeList"></div>
-    </div>
+  <div class="topLine">
+    <div><div class="kicker"><i></i> твой кабинет</div><h2>Не начинай с нуля каждый день.</h2><div class="small">Здесь живёт твой маршрут, прогресс и следующий ход.</div></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn secondary" onclick="openApp()">Новая диагностика</button><button class="btn danger" onclick="signOut()">Выйти</button></div>
   </div>
-
-  <div class="side">
-    <div class="statcard">
-      <div class="statrow"><div><div class="statlabel">Прогресс маршрута</div><div class="statbig" id="dashProgress">0%</div></div><div class="pill" id="dashDay">День 1 / 7</div></div>
-      <div class="metricbar"><i id="dashProgressBar"></i></div>
-      <p class="small" id="dashProgressText" style="margin-top:11px">Первый шаг ещё впереди.</p>
-    </div>
-
-    <div class="panel profile-card">
-      <div class="route">Аккаунт</div>
-      <div class="accountbox"><span id="dashEmail">—</span><span class="pill">сохранено</span></div>
-      <div class="profile-line"><span>Статус</span><b id="dashStatus">Активен</b></div>
-      <div class="profile-line"><span>Последняя диагностика</span><b id="dashDate">—</b></div>
-      <div class="profile-line"><span>Следующий шаг</span><b id="dashNext">—</b></div>
-    </div>
-
-    <div class="panel">
-      <div class="route">Принцип СТАРТЕРА</div>
-      <h3>Один «да» ценнее ста часов подготовки.</h3>
-      <p class="small">Не покупай инструменты и не строй сложный продукт, пока не увидел хотя бы небольшой сигнал от реальных людей.</p>
-    </div>
+  <div class="dashboardTop">
+    <div class="dashHero"><div class="kicker">главный маршрут</div><h2 id="dashMain">—</h2><p id="dashDesc">Пройди диагностику, чтобы получить персональный маршрут.</p><button class="btn lime" onclick="scrollToRoute()">Продолжить маршрут →</button></div>
+    <div class="dashStat"><div class="routeTag">ПРОГРЕСС</div><div class="big" id="dashPct">0%</div><p id="dashProgressText">Пока нет выполненных шагов.</p><div class="taskbar"><i id="dashBar"></i></div><div style="margin-top:14px"><b id="dashEmail">—</b><div class="small">аккаунт</div></div></div>
   </div>
-</div>
+  <div class="routePanel" id="routePanel">
+    <div class="routePanelHead"><div><div class="routeTag">7-ДНЕВНЫЙ МАРШРУТ</div><h3>Твой путь до первого сигнала</h3></div><span class="pill" id="dashDay">День 1 / 7</span></div>
+    <div class="timeline" id="dashTimeline"></div>
+    <div class="routeDays" id="routeDays"></div>
+  </div>
 </section>
-<div class="footer">СТАРТЕР • сначала польза, потом монетизация</div>
+
+<div class="footer">СТАРТЕР • сначала полезность, потом монетизация • v11</div>
 </div>
 
 <div class="modal" id="authModal">
-<div class="modalbox">
-<h3>Сохраним твой СТАРТ</h3>
-<p class="small">Создай аккаунт, чтобы результат и задачи не исчезали после закрытия браузера.</p>
-<div class="field"><label>Email</label><input id="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
-<div class="field"><label>Пароль</label><input id="password" type="password" autocomplete="new-password" placeholder="минимум 6 символов"></div>
-<div class="modalactions"><button class="btn primary" onclick="authSubmit()">Создать / войти</button><button class="btn secondary" onclick="closeAuth()">Закрыть</button></div>
-<div class="notice" id="authNotice">Если включено подтверждение email в Supabase, после регистрации придёт письмо.</div>
-</div>
+  <div class="modalBox">
+    <div class="modalTop"><div><div class="routeTag">АККАУНТ</div><h3 id="authTitle">Сохрани свой маршрут</h3><div class="small">Без аккаунта можно пройти диагностику. Аккаунт нужен только, чтобы сохранить прогресс.</div></div><button class="close" onclick="closeAuth()">×</button></div>
+    <div class="tabs"><button class="tab active" id="tabLogin" onclick="setAuthMode('login')">Войти</button><button class="tab" id="tabSignup" onclick="setAuthMode('signup')">Создать аккаунт</button></div>
+    <div class="field"><label>Email</label><input id="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
+    <div class="field"><label>Пароль</label><input id="password" type="password" autocomplete="current-password" placeholder="минимум 6 символов"></div>
+    <div class="modalActions"><button class="btn lime" id="authAction" onclick="submitAuth()">Войти</button><button class="btn secondary" onclick="closeAuth()">Закрыть</button></div>
+    <div class="notice" id="authNotice">Для теста используй один аккаунт и не нажимай «Создать аккаунт» несколько раз подряд.</div>
+  </div>
 </div>
 
 <script>
-/* =========================
-   1) ВСТАВЬ СЮДА ДАННЫЕ SUPABASE
-   ========================= */
+/* ===== SUPABASE: ВСТАВЬ СВОИ 2 ЗНАЧЕНИЯ ===== */
 const SUPABASE_URL = "https://qoignkplsxdfsuaivvwp.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_-YaqvGtiBPvWCESMzhnQbA_bFHwFfsM";
-
-let sb = null;
 const supabaseReady = SUPABASE_URL.startsWith("https://") && SUPABASE_PUBLISHABLE_KEY.startsWith("sb_");
-if (supabaseReady && window.supabase) sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+const sb = supabaseReady ? window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY) : null;
 
 const questions=[
-{title:"Сколько денег ты реально готов вложить на старте?",hint:"Если ответ — 0 ₽, мы не будем предлагать модели, требующие бюджета.",multi:false,key:"budget",opts:["0 ₽","до 5 000 ₽","5 000–20 000 ₽","20 000–100 000 ₽","больше 100 000 ₽"]},
-{title:"Сколько времени ты можешь уделять этому регулярно?",hint:"Нам важнее реальная жизнь, чем идеальный ответ.",multi:false,key:"time",opts:["до 30 минут в день","1–2 часа","3–5 часов","5+ часов","только по выходным"]},
-{title:"Какие навыки у тебя уже есть?",hint:"Можно выбрать несколько. Даже рабочий или бытовой опыт может пригодиться.",multi:true,key:"skills",opts:["продажи","переговоры","тексты","дизайн","монтаж видео","фото","программирование","аналитика","организация","обучение других","соцсети","работа с клиентами","ничего уверенного пока нет"],other:true},
-{title:"Что тебе нравится делать или изучать?",hint:"Выбирай то, чем тебе было бы не против заниматься месяцами.",multi:true,key:"interests",opts:["технологии","контент","деньги и бизнес","красота и стиль","спорт","игры","образование","психология и саморазвитие","локальные услуги","путешествия","еда","автомобили","не знаю"],other:true},
-{title:"Какой формат работы тебе ближе?",hint:"Можно выбрать несколько.",multi:true,key:"format",opts:["полностью онлайн","удалённые услуги","работа с компаниями","работа с частными клиентами","цифровой продукт","контент/медиа","неважно"]},
-{title:"Насколько тебе комфортно продавать и общаться с людьми?",hint:"Это сильно влияет на подходящую модель.",multi:false,key:"sales",opts:["готов активно продавать","могу общаться, но без давления","предпочитаю переписку","хочу минимум общения","пока боюсь продавать"]},
-{title:"Что тебе важнее в ближайшие 6 месяцев?",hint:"Выбери максимум два приоритета.",multi:true,max:2,key:"goal",opts:["первые деньги","стабильный дополнительный доход","полностью заменить работу","создать бизнес надолго","создать цифровой продукт","собрать аудиторию","научиться новому"]},
-{title:"Какой результат ты хочешь получить?",hint:"Не обещание — ориентир для стратегии.",multi:false,key:"income",opts:["до 30 000 ₽/мес","30–50 000 ₽","50–100 000 ₽","100–300 000 ₽","300 000 ₽+"]},
-{title:"Есть ли у тебя уже аудитория или база потенциальных клиентов?",hint:"Соцсеть, канал, знакомые в сфере, бывшие коллеги или клиенты — всё считается.",multi:true,key:"audience",opts:["нет","личные соцсети","Telegram/сообщество","профессиональные контакты","бывшие клиенты","локальная сеть знакомых","аудитория 1 000+"],other:true},
-{title:"Что ты точно НЕ хочешь делать?",hint:"Ограничения так же важны, как желания.",multi:true,key:"avoid",opts:["холодные звонки","публичные видео","вести соцсети","работать по найму","работать с физическими товарами","работать с людьми","сидеть за компьютером весь день","вкладывать деньги"],other:true},
-{title:"Какой у тебя сейчас статус?",hint:"Поможем не конфликтовать с твоей реальностью.",multi:false,key:"status",opts:["работаю полный день","работаю неполный день","учусь","между работами","уже есть небольшой бизнес","фрилансю"]},
-{title:"Насколько быстро ты хочешь проверить идею?",hint:"Чем быстрее проверяем, тем меньше времени тратим на фантазии.",multi:false,key:"speed",opts:["за 24–48 часов","за неделю","за 2–4 недели","готов строить несколько месяцев"]},
-{title:"Что у тебя уже есть для старта?",hint:"Можно выбрать несколько.",multi:true,key:"assets",opts:["ноутбук","смартфон","камера","портфолио","личный бренд","опыт в конкретной отрасли","готовый продукт","доступ к аудитории","ничего особенного"],other:true},
-{title:"Что сейчас больше всего мешает?",hint:"Выбери всё, что похоже на твою ситуацию.",multi:true,key:"block",opts:["нет идеи","нет денег","не знаю, что продавать","нет навыков","не умею продавать","боюсь провала","не хватает дисциплины","не понимаю, с чего начать","уже пробовал и не получилось"],other:true},
-{title:"Опиши своими словами, чего ты хочешь добиться.",hint:"Необязательно. Напиши как другу.",multi:false,key:"free",text:true,opts:[]}
+{title:"Сколько денег ты реально готов вложить на старте?",hint:"Если 0 ₽ — не будем предлагать модели, которым нужен бюджет.",key:"budget",opts:["0 ₽","до 5 000 ₽","5 000–20 000 ₽","20 000–100 000 ₽","100 000 ₽+"]},
+{title:"Сколько времени ты можешь уделять этому регулярно?",hint:"Выбирай то, что реально выдержать.",key:"time",opts:["до 30 минут в день","1–2 часа","3–5 часов","5+ часов","только по выходным"]},
+{title:"Какие навыки у тебя уже есть?",hint:"Можно выбрать несколько.",key:"skills",multi:true,opts:["продажи","переговоры","тексты","дизайн","монтаж видео","фото","программирование","аналитика","организация","обучение других","соцсети","работа с клиентами","ничего уверенного пока нет"],other:true},
+{title:"Что тебе нравится делать или изучать?",hint:"Выбирай то, чем не против заниматься месяцами.",key:"interests",multi:true,opts:["технологии","контент","деньги и бизнес","красота и стиль","спорт","игры","образование","психология и саморазвитие","локальные услуги","путешествия","еда","автомобили","не знаю"],other:true},
+{title:"Какой формат работы тебе ближе?",hint:"Можно несколько.",key:"format",multi:true,opts:["полностью онлайн","удалённые услуги","работа с компаниями","частные клиенты","цифровой продукт","контент/медиа","неважно"]},
+{title:"Насколько тебе комфортно продавать и общаться?",hint:"Это сильно влияет на подходящую модель.",key:"sales",opts:["готов активно продавать","могу общаться, но без давления","предпочитаю переписку","хочу минимум общения","пока боюсь продавать"]},
+{title:"Что тебе важнее в ближайшие 6 месяцев?",hint:"Максимум два.",key:"goal",multi:true,max:2,opts:["первые деньги","стабильный дополнительный доход","полностью заменить работу","создать бизнес надолго","создать цифровой продукт","собрать аудиторию","научиться новому"]},
+{title:"Какой результат по доходу ты хочешь?",hint:"Это ориентир, а не обещание.",key:"income",opts:["до 30 000 ₽/мес","30–50 000 ₽","50–100 000 ₽","100–300 000 ₽","300 000 ₽+"]},
+{title:"Есть ли у тебя уже аудитория или база клиентов?",hint:"Соцсети, бывшие клиенты, знакомые в сфере — всё считается.",key:"audience",multi:true,opts:["нет","личные соцсети","Telegram/сообщество","профессиональные контакты","бывшие клиенты","локальная сеть знакомых","аудитория 1 000+"],other:true},
+{title:"Что ты точно НЕ хочешь делать?",hint:"Ограничения так же важны, как желания.",key:"avoid",multi:true,opts:["холодные звонки","публичные видео","вести соцсети","работать по найму","физические товары","работать с людьми","сидеть за компьютером весь день","вкладывать деньги"],other:true},
+{title:"Какой у тебя сейчас статус?",hint:"Нам нужна реальность, а не идеальный сценарий.",key:"status",opts:["работаю полный день","работаю неполный день","учусь","между работами","есть небольшой бизнес","фрилансю"]},
+{title:"Насколько быстро хочешь проверить идею?",hint:"Чем быстрее проверяем, тем меньше фантазируем.",key:"speed",opts:["за 24–48 часов","за неделю","за 2–4 недели","готов несколько месяцев"]},
+{title:"Что у тебя уже есть для старта?",hint:"Можно несколько.",key:"assets",multi:true,opts:["ноутбук","смартфон","камера","портфолио","личный бренд","опыт в отрасли","готовый продукт","доступ к аудитории","ничего особенного"],other:true},
+{title:"Что сейчас больше всего мешает?",hint:"Выбери всё, что похоже.",key:"block",multi:true,opts:["нет идеи","нет денег","не знаю, что продавать","нет навыков","не умею продавать","боюсь провала","не хватает дисциплины","не понимаю, с чего начать","уже пробовал и не получилось"],other:true},
+{title:"Опиши своими словами, чего ты хочешь добиться.",hint:"Можно написать как другу.",key:"free",text:true,opts:[]}
 ];
 
 const routes={
-"AI и автоматизация":{desc:"Настраивать для малого бизнеса простые AI- и автоматизационные решения: заявки, ответы, таблицы, контент и рутинные процессы.",money:"Настроить автоматизацию заявок или клиентских ответов за фиксированную сумму.",pros:["можно начать как услугу","низкие стартовые расходы"],pain:"придётся разбираться в инструментах и объяснять ценность клиенту",tags:["технологии","B2B","быстрый тест"]},
-"Услуга для малого бизнеса":{desc:"Продавать конкретную услугу компаниям: упаковка, поиск клиентов, настройка процессов или другая понятная задача.",money:"Взять одну проблему бизнеса и решить её за фиксированную стоимость.",pros:["быстрее всего до первых денег","не нужен готовый продукт"],pain:"нужно общаться с клиентами и продавать результат",tags:["услуга","B2B","первые деньги"]},
-"Контент для бизнеса":{desc:"Создавать для компаний короткие видео, посты, сценарии или контент-пакеты, которые помогают привлекать внимание и клиентов.",money:"Пакет из 12 постов/роликов в месяц для одного бизнеса.",pros:["можно собрать портфолио быстро","много вариантов ниши"],pain:"нужно регулярно делать контент и соблюдать дедлайны",tags:["контент","креатив","услуга"]},
-"Дизайн-пакеты для бизнеса":{desc:"Делать бизнесу визуальные материалы: карточки, презентации, баннеры, оформление соцсетей или простые бренд-пакеты.",money:"Продать готовый пакет оформления за фиксированную цену.",pros:["результат легко показать","можно работать проектами"],pain:"придётся принимать правки и собирать портфолио",tags:["дизайн","визуал","проектная работа"]},
-"Тексты и контент":{desc:"Писать понятные тексты для бизнеса: лендинги, посты, письма, сценарии, описания продуктов и контент-планы.",money:"Пакет текстов или контент-план для конкретной ниши.",pros:["можно стартовать с ноутбуком","легко тестировать ниши"],pain:"качество сильно зависит от практики и насмотренности",tags:["тексты","контент","онлайн"]},
-"Цифровой продукт":{desc:"Создать один полезный цифровой продукт: шаблон, инструкцию, набор файлов, мини-курс или инструмент для конкретной аудитории.",money:"Продать простой продукт с понятным результатом, а не «информацию обо всём».",pros:["может продаваться много раз","меньше ручной работы после создания"],pain:"до первых денег часто дольше, чем у услуги",tags:["продукт","масштаб","онлайн"]},
-"Виртуальный ассистент":{desc:"Помогать предпринимателю или небольшой команде с рутиной: таблицы, календарь, поиск информации, сообщения, организация задач.",money:"Взять на себя конкретный блок рутины на ежемесячной основе.",pros:["низкий порог входа","можно начать без портфолио"],pain:"много операционной работы и общения",tags:["ассистент","операционка","стабильность"]}
+"AI и автоматизация":{desc:"Настраивать для малого бизнеса простые AI- и автоматизационные решения: заявки, ответы, таблицы, контент и рутину.",money:"Настроить автоматизацию заявок или клиентских ответов за фиксированную сумму.",pain:"придётся разбираться в инструментах и объяснять ценность клиенту",tags:["технологии","B2B","быстрый тест"],days:["Найти одну рутинную задачу бизнеса","Выбрать 10 компаний одной ниши","Показать им простое решение","Разобрать ответы и возражения","Собрать мини-демо","Предложить пилот одному клиенту","Решить: масштабировать, изменить или закрыть"]},
+"Услуга для малого бизнеса":{desc:"Продавать компаниям конкретный результат: упаковку, поиск клиентов, контент, процессы или другую понятную задачу.",money:"Взять одну проблему бизнеса и решить её за фиксированную стоимость.",pain:"нужно общаться с клиентами и продавать результат",tags:["услуга","B2B","первые деньги"],days:["Сформулировать один оффер","Найти 10 потенциальных клиентов","Показать оффер и спросить реакцию","Разобрать ответы","Сделать тестовую версию","Предложить первый платный пилот","Решить: продолжать, сузить или сменить нишу"]},
+"Контент для бизнеса":{desc:"Создавать компаниям короткие видео, посты, сценарии или контент-пакеты, которые помогают привлекать внимание.",money:"Пакет из 12 единиц контента в месяц для одной ниши.",pain:"нужно регулярно делать контент и соблюдать дедлайны",tags:["контент","креатив","услуга"],days:["Выбрать одну нишу","Найти 10 бизнесов","Сделать 2 демонстрационных примера","Показать примеры и собрать реакции","Собрать тестовый пакет","Предложить пилот","Оценить спрос и стоимость"]},
+"Дизайн-пакеты для бизнеса":{desc:"Делать бизнесу визуальные материалы: карточки, презентации, баннеры, оформление или простые бренд-пакеты.",money:"Продать готовый пакет оформления за фиксированную цену.",pain:"придётся принимать правки и собирать портфолио",tags:["дизайн","визуал","проектная работа"],days:["Выбрать одну нишу","Найти 10 потенциальных клиентов","Сделать один сильный демо-макет","Показать его людям","Собрать типовые правки","Предложить пакет","Решить, какую услугу оставить"]},
+"Тексты и контент":{desc:"Писать понятные тексты для бизнеса: лендинги, посты, письма, сценарии, описания и контент-планы.",money:"Пакет текстов или контент-план для конкретной ниши.",pain:"качество сильно зависит от практики и насмотренности",tags:["тексты","контент","онлайн"],days:["Выбрать нишу","Найти 10 потенциальных клиентов","Переделать один слабый текст как демо","Показать демо","Собрать возражения","Предложить тестовый пакет","Оценить спрос"]},
+"Цифровой продукт":{desc:"Создать один полезный цифровой продукт: шаблон, набор файлов, мини-курс или инструмент под узкую проблему.",money:"Продать продукт с конкретным результатом, а не «информацию обо всём».",pain:"до первых денег часто дольше, чем у услуги",tags:["продукт","масштаб","онлайн"],days:["Выбрать узкую проблему","Поговорить с 10 потенциальными покупателями","Сформулировать обещание продукта","Проверить описание","Собрать минимальную версию","Предложить купить","Решить: дорабатывать или менять идею"]},
+"Виртуальный ассистент":{desc:"Помогать предпринимателю с рутиной: таблицы, календарь, поиск, сообщения, организация задач и операционка.",money:"Взять конкретный блок рутины на ежемесячной основе.",pain:"много операционной работы и общения",tags:["ассистент","операционка","стабильность"],days:["Выбрать тип предпринимателя","Найти 10 потенциальных клиентов","Собрать список их рутинных задач","Предложить забрать одну задачу","Сделать тест","Предложить ежемесячный формат","Оценить, нравится ли тебе модель"]}
 };
 
-let idx=0,answers={},currentIdeas=[],taskState=[];
-function openApp(){hideAll();document.getElementById("app").style.display="block";idx=0;answers={};render();window.scrollTo({top:0,behavior:"smooth"})}
-function closeApp(){hideAll();document.getElementById("landing").style.display="block";window.scrollTo({top:0,behavior:"smooth"})}
+let idx=0,answers={},currentIdeas=[],taskState=[],selectedRoute=null,authMode="login";
+
 function hideAll(){["landing","app","result","dashboard"].forEach(id=>document.getElementById(id).style.display="none")}
+function openApp(){hideAll();document.getElementById("app").style.display="block";idx=0;answers={};renderQ();scrollTo(0,0)}
+function closeApp(){hideAll();document.getElementById("landing").style.display="block";scrollTo(0,0)}
 function resetApp(){openApp()}
-function render(){
-const q=questions[idx];document.getElementById("qnum").textContent=`ВОПРОС ${idx+1} / ${questions.length}`;document.getElementById("qtitle").textContent=q.title;document.getElementById("qhint").textContent=q.hint;document.getElementById("bar").style.width=(idx/questions.length*100)+"%";document.getElementById("back").style.visibility=idx===0?"hidden":"visible";document.getElementById("next").textContent=idx===questions.length-1?"Получить результат →":"Дальше →";document.getElementById("steps").innerHTML=questions.map((x,n)=>`<div class="step ${n===idx?"active":""} ${n<idx?"done":""}">${n+1}. ${x.title.slice(0,25)}${x.title.length>25?"…":""}</div>`).join("");
-const box=document.getElementById("options");box.innerHTML="";const saved=answers[q.key];
-if(q.text){document.getElementById("custom").style.display="block";document.getElementById("custom").value=saved||"";return}
-document.getElementById("custom").style.display=(q.other&&Array.isArray(saved)&&saved.includes("__other__"))?"block":"none";
-q.opts.forEach(o=>{const b=document.createElement("button");b.className="opt";const selected=q.multi?(saved||[]).includes(o):saved===o;if(selected)b.classList.add("selected");b.innerHTML=o+(q.multi?"<small>можно выбрать</small>":"");b.onclick=()=>select(o);box.appendChild(b)});
-if(q.other){const b=document.createElement("button");b.className="opt "+((saved||[]).includes("__other__")?"selected":"");b.textContent="Другое — хочу дописать";b.onclick=()=>select("__other__");box.appendChild(b)}
-if(q.other&&Array.isArray(saved)&&saved.includes("__other__"))document.getElementById("custom").value=answers[q.key+"_custom"]||"";
+function renderQ(){
+ const q=questions[idx],saved=answers[q.key];
+ document.getElementById("qnum").textContent=`ВОПРОС ${idx+1} / ${questions.length}`;
+ document.getElementById("qtitle").textContent=q.title;document.getElementById("qhint").textContent=q.hint;
+ document.getElementById("bar").style.width=(idx/questions.length*100)+"%";
+ document.getElementById("back").style.visibility=idx?"visible":"hidden";
+ document.getElementById("next").textContent=idx===questions.length-1?"Показать мой маршрут →":"Дальше →";
+ document.getElementById("steps").innerHTML=questions.map((x,n)=>`<div class="step ${n===idx?"active":""} ${n<idx?"done":""}">${n+1}. ${x.title.slice(0,24)}${x.title.length>24?"…":""}</div>`).join("");
+ const box=document.getElementById("options");box.innerHTML="";
+ const custom=document.getElementById("custom");
+ if(q.text){custom.style.display="block";custom.value=saved||"";return}
+ custom.style.display=(q.other&&Array.isArray(saved)&&saved.includes("__other__"))?"block":"none";
+ q.opts.forEach(o=>{const b=document.createElement("button");b.className="opt";const sel=q.multi?(saved||[]).includes(o):saved===o;if(sel)b.classList.add("selected");b.innerHTML=o+(q.multi?"<small>можно выбрать</small>":"");b.onclick=()=>selectAnswer(o);box.appendChild(b)});
+ if(q.other){const b=document.createElement("button");b.className="opt "+((saved||[]).includes("__other__")?"selected":"");b.textContent="Другое — хочу дописать";b.onclick=()=>selectAnswer("__other__");box.appendChild(b)}
+ if(q.other&&Array.isArray(saved)&&saved.includes("__other__"))custom.value=answers[q.key+"_custom"]||"";
 }
-function select(o){const q=questions[idx];if(q.multi){let a=answers[q.key]||[];if(a.includes(o))a=a.filter(x=>x!==o);else{if(q.max&&a.length>=q.max)return;a=[...a,o]}answers[q.key]=a}else answers[q.key]=o;render()}
+function selectAnswer(o){const q=questions[idx];if(q.multi){let a=answers[q.key]||[];if(a.includes(o))a=a.filter(x=>x!==o);else{if(q.max&&a.length>=q.max)return;a=[...a,o]}answers[q.key]=a}else answers[q.key]=o;renderQ()}
 function saveCustom(){const q=questions[idx],v=document.getElementById("custom").value.trim();if(q.text)answers[q.key]=v;else if(q.other&&Array.isArray(answers[q.key])&&answers[q.key].includes("__other__"))answers[q.key+"_custom"]=v}
-function valid(){const q=questions[idx],a=answers[q.key];if(q.text)return !!(a&&a.trim());if(q.multi)return Array.isArray(a)&&a.length>0&&(!q.other||!a.includes("__other__")||!!answers[q.key+"_custom"]);return !!a}
-function nextQ(){saveCustom();if(!valid()){alert("Выбери вариант или допиши свой ответ.");return}if(idx<questions.length-1){idx++;render();window.scrollTo({top:0,behavior:"smooth"})}else showResult()}
-function prevQ(){saveCustom();if(idx>0){idx--;render();window.scrollTo({top:0,behavior:"smooth"})}}
+function validQ(){const q=questions[idx],a=answers[q.key];if(q.text)return !!(a&&a.trim());if(q.multi)return Array.isArray(a)&&a.length&&(!q.other||!a.includes("__other__")||!!answers[q.key+"_custom"]);return !!a}
+function nextQ(){saveCustom();if(!validQ()){alert("Выбери вариант или допиши свой ответ.");return}if(idx<questions.length-1){idx++;renderQ();scrollTo(0,0)}else showResult()}
+function prevQ(){saveCustom();if(idx>0){idx--;renderQ();scrollTo(0,0)}}
+
 function scoreRoutes(a){
-let s={};Object.keys(routes).forEach(k=>s[k]=0);
-const add=(k,v)=>{if(s[k]!=null)s[k]+=v};
-if((a.budget||"").includes("0")){["AI и автоматизация","Услуга для малого бизнеса","Контент для бизнеса","Тексты и контент","Виртуальный ассистент"].forEach(k=>add(k,8));add("Цифровой продукт",4)}
-if((a.skills||[]).includes("программирование")||(a.interests||[]).includes("технологии"))add("AI и автоматизация",22);
-if((a.skills||[]).includes("дизайн"))add("Дизайн-пакеты для бизнеса",22);
-if((a.skills||[]).includes("тексты")||(a.interests||[]).includes("контент")){add("Тексты и контент",18);add("Контент для бизнеса",12)}
-if((a.skills||[]).includes("соцсети"))add("Контент для бизнеса",18);
-if((a.skills||[]).includes("организация")||(a.skills||[]).includes("работа с клиентами"))add("Виртуальный ассистент",16);
-if((a.interests||[]).includes("деньги и бизнес")){add("Услуга для малого бизнеса",15);add("Цифровой продукт",8)}
-if((a.interests||[]).includes("технологии"))add("AI и автоматизация",15);
-if((a.interests||[]).includes("образование"))add("Цифровой продукт",12);
-if((a.goal||[]).includes("первые деньги")){add("Услуга для малого бизнеса",12);add("Виртуальный ассистент",10);add("AI и автоматизация",7)}
-if((a.goal||[]).includes("создать цифровой продукт"))add("Цифровой продукт",18);
-if((a.sales||"").includes("минимум")|| (a.sales||"").includes("боюсь")){add("Цифровой продукт",8);add("Тексты и контент",3);add("Дизайн-пакеты для бизнеса",3);add("Услуга для малого бизнеса",-5)}
-if((a.avoid||[]).includes("работать с людьми")){add("Цифровой продукт",10);add("AI и автоматизация",5);add("Виртуальный ассистент",-10)}
-if((a.avoid||[]).includes("вести соцсети"))add("Контент для бизнеса",-10);
-if((a.avoid||[]).includes("сидеть за компьютером весь день")){add("AI и автоматизация",-5);add("Тексты и контент",-5);add("Дизайн-пакеты для бизнеса",-5)}
-if((a.speed||"").includes("24")){["Услуга для малого бизнеса","Виртуальный ассистент","AI и автоматизация"].forEach(k=>add(k,7));add("Цифровой продукт",-5)}
-return Object.entries(s).sort((x,y)=>y[1]-x[1]).map(x=>({name:x[0],score:Math.max(0,Math.min(100,35+x[1]))}))
+ let s={};Object.keys(routes).forEach(k=>s[k]=0);const add=(k,v)=>s[k]+=v;
+ if((a.budget||"").includes("0"))["AI и автоматизация","Услуга для малого бизнеса","Контент для бизнеса","Тексты и контент","Виртуальный ассистент"].forEach(k=>add(k,7));
+ if((a.skills||[]).includes("программирование")||(a.interests||[]).includes("технологии"))add("AI и автоматизация",25);
+ if((a.skills||[]).includes("дизайн"))add("Дизайн-пакеты для бизнеса",22);
+ if((a.skills||[]).includes("тексты")||(a.interests||[]).includes("контент")){add("Тексты и контент",18);add("Контент для бизнеса",12)}
+ if((a.skills||[]).includes("соцсети"))add("Контент для бизнеса",18);
+ if((a.skills||[]).includes("организация")||(a.skills||[]).includes("работа с клиентами"))add("Виртуальный ассистент",16);
+ if((a.interests||[]).includes("деньги и бизнес")){add("Услуга для малого бизнеса",16);add("Цифровой продукт",8)}
+ if((a.goal||[]).includes("первые деньги")){add("Услуга для малого бизнеса",12);add("Виртуальный ассистент",10);add("AI и автоматизация",7)}
+ if((a.goal||[]).includes("создать цифровой продукт"))add("Цифровой продукт",20);
+ if((a.sales||"").includes("минимум")||(a.sales||"").includes("боюсь")){add("Цифровой продукт",9);add("Услуга для малого бизнеса",-5)}
+ if((a.avoid||[]).includes("работать с людьми")){add("Цифровой продукт",11);add("AI и автоматизация",5);add("Виртуальный ассистент",-11)}
+ if((a.avoid||[]).includes("вести соцсети"))add("Контент для бизнеса",-10);
+ if((a.avoid||[]).includes("сидеть за компьютером весь день")){add("AI и автоматизация",-5);add("Тексты и контент",-5);add("Дизайн-пакеты для бизнеса",-5)}
+ if((a.speed||"").includes("24")){["Услуга для малого бизнеса","Виртуальный ассистент","AI и автоматизация"].forEach(k=>add(k,7));add("Цифровой продукт",-5)}
+ return Object.entries(s).sort((x,y)=>y[1]-x[1]).map(([name,raw])=>({name,score:Math.max(52,Math.min(96,52+raw))}))
 }
-function renderIdea(name,score,main=false){
-const r=routes[name];return `<div class="${main?"mainidea":"idea"}"><div class="route">${main?"главный вариант":"альтернатива"} • ${score}/100</div><h3>${name}</h3><p class="desc">${r.desc}</p><div class="meta">${r.tags.map(t=>`<span class="chip">${t}</span>`).join("")}</div><p class="small"><b>Как заработать:</b> ${r.money}</p><p class="small"><b>Что может не понравиться:</b> ${r.pain}</p><p class="small"><b>Плюсы:</b> ${r.pros.join(" • ")}</p>${main?`<div class="why"><div>💸 Можно начать без большого бюджета.</div><div>⚡ Можно быстро проверить спрос.</div><div>🎯 Продаём конкретный результат, а не абстрактную «идею».</div></div>`:`<div class="idea-actions"><button class="btn secondary" onclick="chooseIdea('${name.replace(/'/g,"\\'")}')">Выбрать этот путь</button></div>`}</div>`
+function ideaHTML(name,score,main=false){
+ const r=routes[name];return `<div class="${main?"direction":"idea"}"><div class="routeTag">${main?"главный маршрут":"альтернатива"} • ${score}/100</div><h${main?"3":"4"}>${name}</h${main?"3":"4"}><p class="${main?"desc":""}">${r.desc}</p><div class="meta">${r.tags.map(t=>`<span class="chip">${t}</span>`).join("")}</div><p class="small"><b>Как заработать:</b> ${r.money}</p><p class="small"><b>Что может не понравиться:</b> ${r.pain}</p>${main?`<div class="why"><div>⚡ Можно проверить спрос без долгой подготовки.</div><div>🎯 Первая неделя заканчивается реальным сигналом, а не «изучением рынка».</div><div>🧭 Завтра появится следующий шаг — не нужно думать с нуля.</div></div>`:`<div class="ideaActions"><button class="btn secondary" onclick="chooseRoute('${name.replace(/'/g,"\\'")}')">Выбрать этот путь →</button></div>`}</div>`
 }
 function showResult(){
-hideAll();document.getElementById("result").style.display="block";currentIdeas=scoreRoutes(answers).slice(0,3);const main=currentIdeas[0],alts=currentIdeas.slice(1);document.getElementById("mainIdea").innerHTML=renderIdea(main.name,main.score,true);document.getElementById("altIdeas").innerHTML=alts.map(x=>renderIdea(x.name,x.score)).join("");buildTasks(main.name);window.scrollTo({top:0,behavior:"smooth"});saveResultIfLoggedIn()}
-function buildTasks(route){
-const t={
-"AI и автоматизация":["Выбери одну конкретную проблему бизнеса, которую можно автоматизировать.","Найди 5 компаний из одной ниши и выпиши их типовую рутину.","Составь короткое сообщение с предложением бесплатного теста."],
-"Услуга для малого бизнеса":["Выбери одну проблему бизнеса, которую ты реально можешь решить.","Собери список из 10 потенциальных клиентов.","Напиши одному клиенту короткое предложение без продажи в лоб."],
-"Контент для бизнеса":["Выбери одну нишу и посмотри 5 аккаунтов конкурентов.","Сделай 2 примера контента для этой ниши.","Предложи одному бизнесу тестовый пакет контента."],
-"Дизайн-пакеты для бизнеса":["Выбери одну нишу и собери 3 примера хорошего визуала.","Сделай один демонстрационный макет.","Покажи его 3 потенциальным клиентам и спроси мнение."],
-"Тексты и контент":["Выбери нишу и найди 5 слабых текстов конкурентов.","Переделай один текст как демонстрацию.","Отправь пример 3 потенциальным клиентам."],
-"Цифровой продукт":["Выбери одну узкую проблему аудитории.","Опиши продукт на одной странице: кому, проблема, результат, цена.","Покажи описание 5 людям и спроси, купили бы они это."],
-"Виртуальный ассистент":["Выбери один тип предпринимателей, которому можно помогать.","Составь список из 10 рутинных задач, которые ты можешь забрать.","Предложи одному человеку взять одну задачу на тест."]
-};taskState=(t[route]||t["Услуга для малого бизнеса"]).map(x=>({title:x,done:false}));renderTasks()}
-function renderTasks(){document.getElementById("tasks").innerHTML=taskState.map((t,i)=>`<label class="task ${t.done?"done":""}"><input class="check" type="checkbox" ${t.done?"checked":""} onchange="toggleTask(${i},this.checked)"><span>${t.title}</span></label>`).join("");const p=Math.round(taskState.filter(x=>x.done).length/taskState.length*100);document.getElementById("taskbar").style.width=p+"%";document.getElementById("taskpct").textContent=p+"%"}
-function toggleTask(i,v){taskState[i].done=v;renderTasks();saveTasksIfLoggedIn()}
-function focusTasks(){document.getElementById("tasks").scrollIntoView({behavior:"smooth",block:"center"})}
-function chooseIdea(name){document.getElementById("mainIdea").innerHTML=renderIdea(name,100,true);buildTasks(name);window.scrollTo({top:0,behavior:"smooth"});saveResultIfLoggedIn(name)}
-function showFreshIdeas(){const used=new Set(currentIdeas.map(x=>x.name));const fresh=scoreRoutes(answers).filter(x=>!used.has(x.name)).slice(0,3);if(!fresh.length)return alert("Для этого профиля сейчас мало дополнительных вариантов — попробуй изменить ответы и пройти диагностику ещё раз.");document.getElementById("altIdeas").innerHTML=fresh.map(x=>renderIdea(x.name,x.score)).join("");currentIdeas=[...currentIdeas,...fresh]}
-
-function routePlan(name){
-const common=[
-["День 1","Сформулировать предложение","Опиши одну проблему, один результат и одного типа клиента."],
-["День 2","Найти 10 потенциальных клиентов","Собери 10 реальных людей или компаний, которым эта проблема может быть знакома."],
-["День 3","Показать оффер","Отправь короткое сообщение 3–5 людям. Цель — получить реакцию, а не сразу продать."],
-["День 4","Разобрать ответы","Запиши, какие слова люди используют и что их реально волнует."],
-["День 5","Сделать тестовую версию","Собери минимальный результат, который можно дать одному человеку."],
-["День 6","Попросить деньги или следующий шаг","Предложи тестовую работу/покупку/созвон — в зависимости от модели."],
-["День 7","Разбор недели","Посчитай ответы, интерес, отказы и реши: усилить, изменить или сменить направление."]
-];
-const special={
-"AI и автоматизация":[
-["День 1","Выбрать одну рутину","Например: заявки, ответы, таблицы или обработка лидов."],
-["День 2","Найти 10 компаний","Выбери одну нишу и выпиши 10 потенциальных клиентов."],
-["День 3","Показать мини-решение","Сделай короткий пример до/после и отправь 3–5 компаниям."],
-["День 4","Собрать возражения","Узнай, что им мешает внедрить такое решение сейчас."],
-["День 5","Собрать демо","Сделай маленькую работающую демонстрацию одного процесса."],
-["День 6","Предложить тест","Дай понятный платный или условно-бесплатный пилот."],
-["День 7","Посчитать сигнал","Сколько ответили? Сколько заинтересовались? Что повторялось?"]
-],
-"Цифровой продукт":[
-["День 1","Выбрать узкую боль","Не «курс по бизнесу», а конкретный результат для конкретного человека."],
-["День 2","Поговорить с 10 людьми","Спроси, как они решают эту проблему сейчас и за что уже платят."],
-["День 3","Проверить обещание","Покажи название, результат и пример содержимого."],
-["День 4","Собрать MVP","Сделай самую маленькую версию продукта."],
-["День 5","Дать 3 людям","Наблюдай, где они застревают и что считают полезным."],
-["День 6","Предложить купить","Назови цену и попроси реальное решение."],
-["День 7","Решение","Оставляем, меняем упаковку или меняем саму проблему."]
-]};
-return special[name]||common;
+ hideAll();document.getElementById("result").style.display="block";currentIdeas=scoreRoutes(answers).slice(0,3);selectedRoute=currentIdeas[0].name;
+ document.getElementById("mainIdea").innerHTML=ideaHTML(currentIdeas[0].name,currentIdeas[0].score,true);
+ document.getElementById("altIdeas").innerHTML=currentIdeas.slice(1).map(x=>ideaHTML(x.name,x.score)).join("");
+ buildTaskState(selectedRoute);renderResultTimeline();saveAssessment();
+ scrollTo(0,0)
 }
-
-async function saveResultIfLoggedIn(chosen){
- if(!sb)return;
- const {data:{session}}=await sb.auth.getSession();if(!session)return;
- const main=chosen||currentIdeas[0]?.name;
- const alternatives=currentIdeas.filter(x=>x.name!==main).slice(0,2).map(x=>x.name);
- const {error}=await sb.from("assessments").insert({user_id:session.user.id,answers,main_direction:main,alternatives});
- if(!error){
-   await sb.from("events").insert({user_id:session.user.id,event_name:"assessment_completed",metadata:{main_direction:main}});
-   await saveRouteIfLoggedIn(main);
- }
-}
-
-async function saveRouteIfLoggedIn(name){
- if(!sb)return;
- const {data:{session}}=await sb.auth.getSession();if(!session)return;
- const plan=routePlan(name);
- await sb.from("tasks").delete().eq("user_id",session.user.id);
- const rows=plan.map((d,i)=>({
-   user_id:session.user.id,
-   title:`${d[0]} • ${d[1]} — ${d[2]}`,
-   completed:false,
-   completed_at:null
- }));
- const {error}=await sb.from("tasks").insert(rows);
- if(error) console.warn("tasks save:",error.message);
-}
-
-async function saveTasksIfLoggedIn(){
- if(!sb)return;
- const {data:{session}}=await sb.auth.getSession();if(!session)return;
- // Сохраняем три сегодняшних действия как отдельные задачи.
- await sb.from("tasks").delete().eq("user_id",session.user.id);
- const main=currentIdeas[0]?.name||"Услуга для малого бизнеса";
- const plan=routePlan(main);
- const rows=plan.map((d,i)=>({
-   user_id:session.user.id,
-   title:`${d[0]} • ${d[1]} — ${d[2]}`,
-   completed:i===0 ? taskState.every(x=>x.done) : false,
-   completed_at:i===0&&taskState.every(x=>x.done)?new Date().toISOString():null
- }));
- await sb.from("tasks").insert(rows);
-}
-
-function parseRouteRows(rows){
- return (rows||[]).map((r,i)=>{
-   const m=r.title.match(/^(День\s+\d+)\s+•\s+(.+?)\s+—\s+(.+)$/);
-   return {id:r.id,day:m?.[1]||`День ${i+1}`,title:m?.[2]||r.title,desc:m?.[3]||"",done:!!r.completed};
- });
-}
-
-async function toggleRouteTask(id,done){
- if(!sb)return;
- const {data:{session}}=await sb.auth.getSession();if(!session)return;
- const {error}=await sb.from("tasks").update({completed:done,completed_at:done?new Date().toISOString():null}).eq("id",id).eq("user_id",session.user.id);
- if(error){console.warn(error.message);return}
- await openDashboard();
-}
-
-function renderDashboardRoute(rows,main){
- const parsed=parseRouteRows(rows);
- const fallback=routePlan(main||"Услуга для малого бизнеса").map((d,i)=>({id:null,day:d[0],title:d[1],desc:d[2],done:false}));
- const items=parsed.length?parsed:fallback;
- const done=items.filter(x=>x.done).length;
- const pct=Math.round(done/items.length*100);
- document.getElementById("dashProgress").textContent=pct+"%";
- document.getElementById("dashProgressBar").style.width=pct+"%";
- document.getElementById("dashDay").textContent=`День ${Math.min(done+1,7)} / 7`;
- document.getElementById("dashProgressText").textContent=pct===100?"Маршрут недели пройден. Теперь нужен следующий цикл.":done===0?"Начни с первого дня — один конкретный оффер.":`Готово ${done} из ${items.length}. Следующий шаг уже перед тобой.`;
- document.getElementById("dashRoute").dataset.items=JSON.stringify(items);
- document.getElementById("routeList").innerHTML=items.map((x,i)=>`
-   <div class="route-day ${!x.done&&i===done?"active":""} ${x.done?"done":""}">
-     <div class="daynum">${i+1}</div>
-     <div><div class="route-title">${x.title}</div><div class="route-sub">${x.desc}</div></div>
-     <div class="route-status ${x.done?"done":""}">
-       ${x.id?`<label style="display:flex;align-items:center;gap:7px;cursor:pointer"><input class="check" type="checkbox" ${x.done?"checked":""} onchange="toggleRouteTask('${x.id}',this.checked)">${x.done?"готово":"сделать"}</label>`:(x.done?"готово":"дальше")}
-     </div>
-   </div>`).join("");
- document.getElementById("dashNext").textContent=items.find(x=>!x.done)?.title||"Новый цикл";
-}
-
-async function openDashboard(){
- if(!sb)return;
- const {data:{session}}=await sb.auth.getSession();if(!session)return;
- hideAll();document.getElementById("dashboard").style.display="block";
- document.getElementById("dashEmail").textContent=session.user.email||"Аккаунт";
- const {data:assessments}=await sb.from("assessments").select("*").eq("user_id",session.user.id).order("created_at",{ascending:false}).limit(1);
- const last=assessments?.[0];
- const main=last?.main_direction||"Пока нет маршрута";
- document.getElementById("dashMain").textContent=main;
- document.getElementById("dashIntro").textContent=last?"СТАРТЕР уже знает твой основной путь. Теперь задача — не изучать бесконечно, а получить первый реальный сигнал от рынка.":"Пройди диагностику, чтобы СТАРТЕР собрал для тебя направление и разложил первые 7 дней по шагам.";
- document.getElementById("dashDate").textContent=last?new Date(last.created_at).toLocaleDateString("ru-RU"):"—";
- const {data:tasks}=await sb.from("tasks").select("*").eq("user_id",session.user.id).order("created_at",{ascending:true});
- renderDashboardRoute(tasks||[],main);
- window.scrollTo({top:0,behavior:"smooth"});
-}
-
-function openAuth(){
- document.getElementById("authModal").style.display="flex";
- document.getElementById("authNotice").textContent=sb?"Введи email и пароль. СТАРТЕР сам поймёт: это вход или новый аккаунт.":"Сначала вставь Supabase URL и publishable key в код сайта.";
-}
+function chooseRoute(name){selectedRoute=name;document.getElementById("mainIdea").innerHTML=ideaHTML(name,100,true);buildTaskState(name);renderResultTimeline();saveAssessment(name);scrollTo(0,0)}
+function showFreshIdeas(){const used=new Set(currentIdeas.map(x=>x.name));const fresh=scoreRoutes(answers).filter(x=>!used.has(x.name));if(!fresh.length){alert("Попробуй изменить пару ответов — тогда поиск получит другой профиль.");return}document.getElementById("altIdeas").innerHTML=fresh.slice(0,3).map(x=>ideaHTML(x.name,x.score)).join("")}
+function buildTaskState(route){const r=routes[route]||routes["Услуга для малого бизнеса"];taskState=r.days.map((title,i)=>({title:`День ${i+1}: ${title}`,done:false,id:null}));renderTasks();renderResultTimeline()}
+function renderTasks(){document.getElementById("tasks").innerHTML=taskState.slice(0,3).map((t,i)=>`<label class="task ${t.done?"done":""}"><input class="check" type="checkbox" ${t.done?"checked":""} onchange="toggleToday(${i},this.checked)"><span>${t.title}</span></label>`).join("");updateTaskProgress()}
+function toggleToday(i,v){taskState[i].done=v;renderTasks();saveTasks()}
+function updateTaskProgress(){const p=taskState.length?Math.round(taskState.filter(x=>x.done).length/taskState.length*100):0;document.getElementById("taskbar").style.width=p+"%";document.getElementById("taskpct").textContent=p+"%"}
+function renderResultTimeline(){const days=taskState.length?taskState:[];document.getElementById("resultTimeline").innerHTML=days.map((d,i)=>`<div class="day ${d.done?"done":i===0?"current":""}"><div class="dayNum">Д${i+1}</div><div class="dayName">${d.title.replace(/^День \d+: /,"").slice(0,18)}${d.title.length>26?"…":""}</div><div class="dayStatus">${d.done?"готово":i===0?"сегодня":"дальше"}</div></div>`).join("")}
+function openAuth(){document.getElementById("authModal").style.display="flex";document.getElementById("authNotice").className="notice";document.getElementById("authNotice").textContent=sb?"Не нажимай «Создать аккаунт» повторно, если письмо уже отправлено.":"Сначала вставь Supabase URL и publishable key в код сайта.";setAuthMode("login")}
 function closeAuth(){document.getElementById("authModal").style.display="none"}
-
-async function authSubmit(){
- if(!sb){alert("Supabase пока не подключён в коде.");return}
- const email=document.getElementById("email").value.trim();
- const password=document.getElementById("password").value;
- if(!email||password.length<6){alert("Нужен email и пароль минимум из 6 символов.");return}
- document.getElementById("authNotice").textContent="Проверяем аккаунт…";
- let res=await sb.auth.signInWithPassword({email,password});
+function setAuthMode(mode){authMode=mode;document.getElementById("tabLogin").classList.toggle("active",mode==="login");document.getElementById("tabSignup").classList.toggle("active",mode==="signup");document.getElementById("authAction").textContent=mode==="login"?"Войти":"Создать аккаунт";document.getElementById("authTitle").textContent=mode==="login"?"С возвращением.":"Сохрани свой маршрут";document.getElementById("password").autocomplete=mode==="login"?"current-password":"new-password"}
+async function submitAuth(){
+ if(!sb){showAuthNotice("Supabase не подключён в коде.","error");return}
+ const email=document.getElementById("email").value.trim(),password=document.getElementById("password").value;
+ if(!email||password.length<6){showAuthNotice("Нужен корректный email и пароль минимум из 6 символов.","error");return}
+ document.getElementById("authAction").disabled=true;
+ let res;
+ if(authMode==="login") res=await sb.auth.signInWithPassword({email,password});
+ else res=await sb.auth.signUp({email,password});
+ document.getElementById("authAction").disabled=false;
  if(res.error){
-   const signup=await sb.auth.signUp({email,password});
-   if(signup.error){
-     document.getElementById("authNotice").textContent=signup.error.message;
-     return;
-   }
-   if(!signup.data.session){
-     document.getElementById("authNotice").textContent="Аккаунт создан. Подтверди email в письме, затем вернись сюда и нажми «Войти».";
-     return;
-   }
-   res=signup;
+   const msg=res.error.message||"Ошибка авторизации";
+   if(/rate limit|too many|over_email_send_rate_limit/i.test(msg)){
+     showAuthNotice("Supabase временно ограничил отправку писем. Мы НЕ будем повторять запрос автоматически. Для теста просто подожди и потом используй «Войти», если аккаунт уже создан. Встроенная почта Supabase имеет очень низкий лимит.","error");
+   }else showAuthNotice(msg,"error");
+   return
  }
- if(res.error){document.getElementById("authNotice").textContent=res.error.message;return}
- closeAuth();
- await updateAuthUI();
- if(document.getElementById("result").style.display!=="none")await saveResultIfLoggedIn();
- await openDashboard();
+ if(authMode==="signup"){
+   if(res.data?.session){closeAuth();updateAuthUI();await openDashboard()}
+   else showAuthNotice("Аккаунт создан. Проверь почту и нажми ссылку подтверждения, затем вернись сюда и нажми «Войти».","good");
+ }else{closeAuth();updateAuthUI();await openDashboard()}
 }
-
-async function signOut(){
- if(sb)await sb.auth.signOut();
- await updateAuthUI();
- closeAuth();
- closeApp();
+function showAuthNotice(t,type=""){const n=document.getElementById("authNotice");n.textContent=t;n.className="notice "+type}
+async function updateAuthUI(){if(!sb)return;const {data:{session}}=await sb.auth.getSession();const b=document.getElementById("authBtn");b.textContent=session?"Кабинет":"Войти";b.onclick=session?openDashboard:openAuth}
+async function signOut(){if(sb)await sb.auth.signOut();updateAuthUI();closeApp()}
+async function saveAssessment(chosen){
+ if(!sb)return;const {data:{session}}=await sb.auth.getSession();if(!session)return;
+ const main=chosen||selectedRoute||currentIdeas[0]?.name;
+ const alternatives=currentIdeas.filter(x=>x.name!==main).map(x=>x.name);
+ const {data:assessment,error}=await sb.from("assessments").insert({user_id:session.user.id,answers,main_direction:main,alternatives}).select().single();
+ if(!error){selectedAssessmentId=assessment?.id||null;await sb.from("events").insert({user_id:session.user.id,event_name:"assessment_completed",metadata:{main_direction:main}});await saveTasks()}
 }
-
-async function updateAuthUI(){
- if(!sb)return;
- const {data:{session}}=await sb.auth.getSession();
- const btn=document.getElementById("authBtn");
- if(session){
-   btn.textContent="Кабинет";
-   btn.onclick=()=>openDashboard();
-   const p=document.getElementById("profileLabel");if(p)p.textContent="Результат сохранится";
- }else{
-   btn.textContent="Войти";
-   btn.onclick=()=>openAuth();
-   const p=document.getElementById("profileLabel");if(p)p.textContent="Результат пока локальный";
- }
+let selectedAssessmentId=null;
+async function saveTasks(){
+ if(!sb)return;const {data:{session}}=await sb.auth.getSession();if(!session)return;
+ // Avoid creating duplicates: use the newest seven task titles as this route.
+ const {data:existing}=await sb.from("tasks").select("id,title,completed").eq("user_id",session.user.id).order("created_at",{ascending:false}).limit(30);
+ const currentTitles=new Set((existing||[]).map(x=>x.title));
+ for(const t of taskState){if(!currentTitles.has(t.title)){await sb.from("tasks").insert({user_id:session.user.id,title:t.title,completed:t.done,completed_at:t.done?new Date().toISOString():null})}}
 }
-
-if(sb){
- sb.auth.onAuthStateChange((event,session)=>{
-   setTimeout(()=>updateAuthUI(),50);
- });
- updateAuthUI();
+async function openDashboard(){
+ if(!sb){openAuth();return}
+ const {data:{session}}=await sb.auth.getSession();if(!session){openAuth();return}
+ hideAll();document.getElementById("dashboard").style.display="block";document.getElementById("dashEmail").textContent=session.user.email||"Аккаунт";
+ const {data:ass}=await sb.from("assessments").select("*").eq("user_id",session.user.id).order("created_at",{ascending:false}).limit(1);
+ const latest=ass?.[0];
+ if(!latest){document.getElementById("dashMain").textContent="Пока пусто";document.getElementById("dashDesc").textContent="Пройди диагностику — и здесь появится твой маршрут.";document.getElementById("routeDays").innerHTML="";document.getElementById("dashTimeline").innerHTML="";return}
+ selectedRoute=latest.main_direction;const r=routes[selectedRoute]||routes["Услуга для малого бизнеса"];
+ document.getElementById("dashMain").textContent=selectedRoute;document.getElementById("dashDesc").textContent=r.desc;
+ const {data:tasks}=await sb.from("tasks").select("id,title,completed,completed_at,created_at").eq("user_id",session.user.id).order("created_at",{ascending:false}).limit(100);
+ let routeTasks=(tasks||[]).filter(t=>t.title.startsWith("День ")).slice(0,7);
+ if(routeTasks.length<7){taskState=r.days.map((title,i)=>({title:`День ${i+1}: ${title}`,done:false,id:null}));await saveTasks();const q=await sb.from("tasks").select("id,title,completed,completed_at").eq("user_id",session.user.id).order("created_at",{ascending:false}).limit(100);routeTasks=(q.data||[]).filter(t=>t.title.startsWith("День ")).slice(0,7)}
+ routeTasks.sort((a,b)=>parseInt(a.title.match(/День (\d+)/)?.[1]||0)-parseInt(b.title.match(/День (\d+)/)?.[1]||0));
+ taskState=routeTasks.map(t=>({title:t.title,done:!!t.completed,id:t.id}));
+ renderDashboardRoute();scrollTo(0,0)
 }
+function renderDashboardRoute(){
+ const done=taskState.filter(x=>x.done).length,p=taskState.length?Math.round(done/taskState.length*100):0,day=Math.min(7,done+1);
+ document.getElementById("dashPct").textContent=p+"%";document.getElementById("dashProgressText").textContent=`Выполнено ${done} из ${taskState.length||7} дней. Следующий шаг — День ${day}.`;document.getElementById("dashBar").style.width=p+"%";document.getElementById("dashDay").textContent=`День ${day} / 7`;
+ document.getElementById("dashTimeline").innerHTML=taskState.map((t,i)=>`<div class="day ${t.done?"done":i===done?"current":""}"><div class="dayNum">Д${i+1}</div><div class="dayName">${t.title.replace(/^День \d+: /,"").slice(0,18)}${t.title.length>27?"…":""}</div><div class="dayStatus">${t.done?"готово":i===done?"сейчас":"дальше"}</div></div>`).join("");
+ document.getElementById("routeDays").innerHTML=taskState.map((t,i)=>`<div class="routeDay ${t.done?"done":""}"><div class="routeDayNum">${t.done?"✓":i+1}</div><div><b>${t.title.replace(/^День \d+: /,"")}</b><small>${t.done?"Шаг выполнен.":"Когда сделаешь — отметь его."}</small></div><div class="status">${t.done?"ГОТОВО":i===done?"СЕЙЧАС":"ДАЛЬШЕ"}</div></div>`).join("")
+}
+async function toggleDashboardTask(i){
+ const t=taskState[i];t.done=!t.done;renderDashboardRoute();if(sb&&t.id){await sb.from("tasks").update({completed:t.done,completed_at:t.done?new Date().toISOString():null}).eq("id",t.id)}
+}
+function scrollToRoute(){document.getElementById("routePanel").scrollIntoView({behavior:"smooth"})}
+if(sb){sb.auth.onAuthStateChange(()=>updateAuthUI());updateAuthUI()}
 </script>
 </body>
 </html>
