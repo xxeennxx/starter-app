@@ -392,6 +392,25 @@ section{padding:84px 0}.sectionHead h2,.appHead h2,.topLine h2{font-family:Inter
 @media(max-width:900px){.signalGrid{grid-template-columns:1fr}.hero{gap:45px}.qcard{padding:28px}}
 @media(max-width:620px){.wrap{padding:0 15px}.hero{padding:55px 0}.hero h1{font-size:49px;letter-spacing:-3.5px}.sectionHead h2{font-size:38px}.blueBand{flex-direction:column;align-items:flex-start}.options{grid-template-columns:1fr}.qtitle{font-size:31px}.qcard{padding:24px}.resultHero h2{font-size:38px}.signalGrid{grid-template-columns:1fr}.navright .pill{display:none}}
 
+
+/* ===== V15 AGGRESSIVE PRODUCT SYSTEM ===== */
+:root{--ink:#06101f;--paper:#eef4fb;--white:#ffffff;--muted:#64748b;--line:#d7e1ee;--blue:#245cff;--cyan:#22d3ee;--red:#ff3b30;--shadow:0 24px 80px rgba(6,16,31,.13);--shadow2:0 12px 36px rgba(6,16,31,.08)}
+body{background:#eef4fb;color:#07111f;overflow-x:hidden}
+body:before{z-index:-2;left:-240px;top:-220px;width:650px;height:650px;background:radial-gradient(circle,rgba(36,92,255,.28),transparent 66%);filter:blur(2px)}
+body:after{z-index:-2;right:-260px;top:8%;width:700px;height:700px;background:radial-gradient(circle,rgba(34,211,238,.20),transparent 62%);filter:blur(4px)}
+.wrap{max-width:1240px}
+nav{height:86px;border-bottom:1px solid #cfdbea;position:relative}
+.logo{font-size:25px;color:#07111f;letter-spacing:-1.8px}.logoMark{width:31px;height:31px;border-radius:7px;background:#245cff;transform:rotate(-8deg);box-shadow:5px 5px 0 #07111f}.logoMark:after{background:#fff;width:9px;height:9px;border-radius:2px;right:6px;top:6px}
+.pill{background:#fff;border:1px solid #cfdbea;color:#52637a;border-radius:5px;font-size:10px;text-transform:uppercase;letter-spacing:.08em}
+.btn{border-radius:6px;text-transform:uppercase;letter-spacing:.035em;font-size:12px;padding:15px 19px;min-height:48px;position:relative;overflow:hidden}.btn:before{content:"";position:absolute;inset:0;transform:translateX(-105%);background:rgba(255,255,255,.16);transition:.25s}.btn:hover:before{transform:translateX(105%)}.btn:hover{transform:translateY(-2px)}.primary,.lime{background:#245cff;color:#fff;box-shadow:6px 6px 0 #07111f}.secondary{background:#fff;border:1px solid #aebed2;color:#07111f;box-shadow:3px 3px 0 #cbd6e4}.danger{border-radius:6px}
+.hero{padding:88px 0 92px;grid-template-columns:1.1fr .9fr;gap:74px;position:relative}.hero:before{content:"01 / LAUNCH";position:absolute;right:0;top:52px;font-size:10px;font-weight:900;letter-spacing:.16em;color:#8292a8}.hero h1{font-size:clamp(54px,7vw,92px);line-height:.88;letter-spacing:-6px;color:#07111f;margin-top:20px}.hero h1 em{color:#245cff}.hero h1 em:after{display:none}.lead{font-size:18px;line-height:1.6;color:#4e6077;max-width:650px}.kicker{font-size:10px;letter-spacing:.16em;color:#63758e}.kicker i{background:#ff3b30;box-shadow:0 0 0 5px rgba(255,59,48,.1)}.actions{margin-top:30px}.trust{margin-top:20px}.trust span{border-radius:4px;background:#fff;border:1px solid #d3dfed;color:#596b82;font-size:10px;text-transform:uppercase;letter-spacing:.05em}.blueBand{margin-top:25px;border-left:5px solid #245cff;background:#07111f;color:#fff;padding:15px 17px;display:flex;justify-content:space-between;gap:18px;align-items:center;max-width:680px;font-size:11px;text-transform:uppercase;letter-spacing:.04em}.blueBand b{color:#53d9ff}.heroSignal{display:flex;gap:9px;align-items:center;margin-top:12px;font-size:9px;text-transform:uppercase;letter-spacing:.09em;color:#70829a}.heroSignalDot{width:7px;height:7px;background:#19c37d;border-radius:50%;box-shadow:0 0 0 5px rgba(25,195,125,.12)}
+.heroCard{position:relative}.preview{background:#fff;border:1px solid #cfdbea;border-radius:4px;padding:16px;box-shadow:18px 22px 0 rgba(36,92,255,.10),0 25px 70px rgba(6,16,31,.14)}.previewTop{border-bottom:1px solid #dce5ef;padding-bottom:12px}.miniLogo{font-size:10px;letter-spacing:.12em;color:#687a91}.live{background:#07111f;color:#fff;border-radius:3px;padding:6px 9px;font-size:9px}.routeCard{border-radius:4px;background:#07111f;border:1px solid #07111f;padding:27px;box-shadow:7px 7px 0 #245cff}.routeCard:after{width:230px;height:230px;right:-110px;top:-100px;background:radial-gradient(circle,#245cff,transparent 68%);opacity:.85;filter:none}.routeSmall{color:#8fa4bf;letter-spacing:.16em}.routeCard h3{font-family:Inter,system-ui,sans-serif;font-weight:800;font-size:31px;line-height:1;max-width:390px;letter-spacing:-1.4px}.routeLine{background:#1b2d48;height:7px}.routeLine b{background:linear-gradient(90deg,#245cff,#22d3ee)}.previewRows{gap:8px}.previewRow{background:#f4f7fb;border:1px solid #dce5ef;border-radius:4px;padding:14px}.previewRow small{color:#71839a;font-size:9px;letter-spacing:.1em}.previewRow b{font-size:14px;color:#17283f}
+section{padding:90px 0}.sectionHead h2{font-size:54px;letter-spacing:-3.5px;color:#07111f}.sectionHead p{color:#63748a}.featureGrid{gap:10px}.feature{border-radius:4px;background:#fff;border:1px solid #d4dfec;box-shadow:8px 8px 0 rgba(7,17,31,.06);min-height:220px;padding:27px}.feature:nth-child(2){background:#245cff;color:#fff;border-color:#245cff}.feature:nth-child(2) p,.feature:nth-child(2) .featureNum{color:#dbe7ff}.feature:nth-child(3){background:#07111f;color:#fff;border-color:#07111f}.feature:nth-child(3) p,.feature:nth-child(3) .featureNum{color:#a7bad2}.feature h3{font-size:25px;letter-spacing:-1.2px}.miniProof{border-top:1px solid #cdd9e7;border-bottom:1px solid #cdd9e7;margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr)}.miniProof div{padding:18px 4px;display:flex;gap:12px;align-items:center}.miniProof b{font-size:12px;color:#245cff}.miniProof span{font-size:11px;font-weight:800;text-transform:uppercase;color:#4e6178}
+.impactSection{padding-top:35px}.impactHeader{display:flex;justify-content:space-between;align-items:end;margin-bottom:28px}.impactHeader h2{font-size:58px;line-height:.92;letter-spacing:-4px;margin:10px 0}.impactHeader h2 em{font-style:normal;color:#245cff}.impactStamp{width:82px;height:82px;background:#ff3b30;color:#fff;display:grid;place-items:center;text-align:center;font-size:13px;font-weight:1000;line-height:.85;transform:rotate(-6deg);box-shadow:6px 6px 0 #07111f}.impactGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.impactCard{min-height:260px;padding:26px;border-radius:4px;border:1px solid #07111f;position:relative;overflow:hidden;box-shadow:8px 8px 0 rgba(7,17,31,.08)}.impactCard span{font-size:11px;font-weight:900;opacity:.65}.impactCard h3{font-size:30px;letter-spacing:-1.8px;margin:55px 0 10px}.impactCard p{line-height:1.55;max-width:330px}.impactCard b{position:absolute;left:26px;bottom:24px;font-size:9px;letter-spacing:.12em}.impactDark{background:#07111f;color:#fff}.impactDark p{color:#b4c4d8}.impactBlue{background:#245cff;color:#fff}.impactBlue p{color:#dbe7ff}.impactRed{background:#ff3b30;color:#fff}.impactRed p{color:#fff0ef}
+#app,#result,#dashboard{padding-top:46px}.appHead h2,.topLine h2{font-size:48px;letter-spacing:-3px}.progress{height:7px;background:#d8e2ee}.bar{background:linear-gradient(90deg,#245cff,#22d3ee)}.steps{background:#fff;border:1px solid #d4dfec;border-radius:4px}.step{border-radius:3px}.step.active{background:#07111f}.qcard{border-radius:4px;background:#fff;border:1px solid #cfdbea;box-shadow:12px 12px 0 rgba(36,92,255,.08)}.qtitle{font-size:38px;letter-spacing:-2px}.options{gap:8px}.opt{border-radius:4px;background:#f5f8fc;border:1px solid #d5dfeb;min-height:66px}.opt:hover{border-color:#245cff;background:#eef4ff}.opt.selected{background:#245cff;color:#fff;border-color:#245cff;box-shadow:5px 5px 0 #07111f}.opt.selected small{color:#d8e5ff}.custom{border-radius:4px;background:#f5f8fc;border-color:#cbd8e7}.footerActions{border-top:1px solid #dbe4ef;padding-top:18px}
+.resultHero{border-radius:4px;background:#07111f;border:1px solid #07111f;box-shadow:10px 10px 0 #245cff;padding:42px}.resultHero:after{background:radial-gradient(circle,rgba(36,92,255,.9),transparent 67%)}.resultHero h2{font-size:56px;line-height:.95}.signalCard,.mainCard,.sideCard,.dashStat,.routePanel{border-radius:4px;border:1px solid #d4dfec;box-shadow:var(--shadow2)}.signalCard.dark{background:#07111f;border-color:#07111f}.signalScore{color:#245cff}.signalCard.dark .signalScore{color:#fff}.focusBox{border-radius:4px}.task{padding:13px 0}.routeDay{border-radius:4px}.routeDay button{border-radius:4px}.modal{background:rgba(3,9,18,.76)}.modalBox{border-radius:4px;border:1px solid #cbd8e7;box-shadow:16px 16px 0 rgba(36,92,255,.18)}.tabs{border-radius:4px}.tab{border-radius:3px}.field input{border-radius:4px}.footer{border-top:1px solid #cdd9e7}
+@media(max-width:900px){.hero,.impactGrid{grid-template-columns:1fr}.hero:before{display:none}.impactHeader{align-items:start}.impactStamp{margin-top:8px}.blueBand{flex-direction:column;align-items:flex-start}.miniProof{grid-template-columns:1fr}.miniProof div{border-bottom:1px solid #dbe4ef}.miniProof div:last-child{border-bottom:0}}
+@media(max-width:620px){.hero{padding:58px 0 70px}.hero h1{font-size:51px;letter-spacing:-3.8px}.impactHeader h2{font-size:43px}.impactStamp{width:68px;height:68px}.sectionHead h2{font-size:42px}.resultHero{padding:28px}.resultHero h2{font-size:39px}.qtitle{font-size:31px}}
 </style>
 </head>
 <body>
@@ -399,7 +418,7 @@ section{padding:84px 0}.sectionHead h2,.appHead h2,.topLine h2{font-family:Inter
 <nav>
   <div class="logo"><span class="logoMark"></span>СТАРТЕР</div>
   <div class="navright">
-    <span class="pill">v13 • ранний доступ</span>
+    <span class="pill">v15 • ранний доступ</span>
     <button class="btn secondary" id="authBtn" onclick="openAuth()">Войти</button>
   </div>
 </nav>
@@ -408,27 +427,27 @@ section{padding:84px 0}.sectionHead h2,.appHead h2,.topLine h2{font-family:Inter
 <section class="hero">
   <div>
     <div class="kicker"><i></i> персональный маршрут запуска</div>
-    <h1>Не ищи <em>идеальную идею.</em> Найди свой следующий ход.</h1>
-    <p class="lead">СТАРТЕР учитывает твои деньги, время, навыки, интересы и ограничения — потом даёт несколько нормальных направлений и ведёт по одному конкретному маршруту.</p>
+    <h1>Тебе не нужна <em>идеальная идея.</em><br>Тебе нужен первый результат.</h1>
+    <p class="lead">СТАРТЕР разбирает твою ситуацию, отсекает херню и выдаёт маршрут, который можно проверить на реальных людях за 7 дней.</p>
     <div class="actions">
-      <button class="btn lime" onclick="openApp()">Пройти диагностику <span>↗</span></button>
-      <button class="btn secondary" onclick="document.getElementById('how').scrollIntoView()">Посмотреть как работает</button>
+      <button class="btn lime" onclick="openApp()">ЗАПУСТИТЬ ДИАГНОСТИКУ <span>↗</span></button>
+      <button class="btn secondary" onclick="document.getElementById('how').scrollIntoView()">ПОКАЗАТЬ, ЧТО ВНУТРИ</button>
     </div>
-    <div class="trust"><span>15 вопросов</span><span>3 подходящих пути</span><span>7 дней до первого сигнала</span></div><div class="blueBand"><span>Не надо знать, какой бизнес строить.</span><b>Нужно понять следующий ход →</b></div>
+    <div class="trust"><span>15 точных вопросов</span><span>3 маршрута</span><span>7 дней до сигнала</span><span>0 ₽ на старте</span></div><div class="blueBand"><span>НЕ ЗНАЕШЬ, ЧТО ЗАПУСКАТЬ?</span><b>СТАРТЕР ДАСТ ТЕБЕ СЛЕДУЮЩИЙ ХОД →</b></div><div class="heroSignal"><span class="heroSignalDot"></span><b>РЕЖИМ: ДЕЙСТВИЕ</b><span>не курс · не тест · не мотивация</span></div>
   </div>
   <div class="heroCard">
     <div class="blob"></div>
     <div class="preview">
       <div class="previewTop"><span class="miniLogo">ТВОЙ СТАРТ</span><span class="live">LIVE ROUTE</span></div>
       <div class="routeCard">
-        <div class="routeSmall">главное направление</div>
-        <h3>AI и автоматизация</h3>
+        <div class="routeSmall">ТВОЙ МАРШРУТ</div>
+        <h3>Проверяем спрос, а не фантазируем</h3>
         <div class="routeLine"><b></b></div>
-        <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:10px;color:#c5c4c8"><span>День 4 из 7</span><b style="color:#dfff5a">58%</b></div>
+        <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:10px;color:#c5c4c8"><span>ПРОГРЕСС · ДЕНЬ 4 / 7</span><b style="color:#2ed6ff">58%</b></div>
       </div>
       <div class="previewRows">
-        <div class="previewRow"><small>СЕГОДНЯ</small><b>3 действия</b></div>
-        <div class="previewRow"><small>ЗАВТРА</small><b>Первые 10</b></div>
+        <div class="previewRow"><small>СЕГОДНЯ</small><b>Оффер + 3 действия</b></div>
+        <div class="previewRow"><small>ЗАВТРА</small><b>10 первых контактов</b></div>
       </div>
     </div>
   </div>
@@ -446,6 +465,14 @@ section{padding:84px 0}.sectionHead h2,.appHead h2,.topLine h2{font-family:Inter
     <div class="feature"><div class="featureNum">03 / ДЕЙСТВИЕ</div><h3>7 дней без болтовни</h3><p>Маршрут построен вокруг первого сигнала рынка, а не вокруг бесконечной подготовки.</p></div>
   </div>
   <div class="miniProof"><div><b>01</b><span>Понять, что тебе подходит</span></div><div><b>02</b><span>Выбрать путь и оффер</span></div><div><b>03</b><span>Получить первый сигнал</span></div></div>
+</section>
+<section class="impactSection">
+  <div class="impactHeader"><div><div class="kicker"><i></i> что получишь</div><h2>Не «идея бизнеса».<br><em>Система движения.</em></h2></div><div class="impactStamp">START<br>NOW</div></div>
+  <div class="impactGrid">
+    <article class="impactCard impactDark"><span>01</span><h3>ТВОЙ СИГНАЛ</h3><p>Почему этот путь подходит именно тебе — и насколько быстро его можно проверить.</p><b>FIT / SPEED / DEMAND</b></article>
+    <article class="impactCard impactBlue"><span>02</span><h3>ТВОЙ ОФФЕР</h3><p>Не «подумай над услугой». Готовый первый текст, который можно отправить человеку сегодня.</p><b>COPY → SEND → GET RESPONSE</b></article>
+    <article class="impactCard impactRed"><span>03</span><h3>ТВОЙ МАРШРУТ</h3><p>Каждый день убирает одну неизвестность. Никакой бесконечной подготовки.</p><b>7 DAYS / REAL SIGNAL</b></article>
+  </div>
 </section>
 </main>
 
@@ -542,7 +569,7 @@ section{padding:84px 0}.sectionHead h2,.appHead h2,.topLine h2{font-family:Inter
   </div>
 </section>
 
-<div class="footer">СТАРТЕР • сначала полезность, потом монетизация • v13</div>
+<div class="footer">СТАРТЕР • сначала полезность, потом монетизация • v15</div>
 </div>
 
 <div class="modal" id="authModal">
@@ -678,7 +705,7 @@ function buildOffer(name){
 function setOffer(name){const el=document.getElementById('offerText');if(el)el.textContent=buildOffer(name)}
 async function copyOffer(){const text=document.getElementById('offerText')?.textContent||'';try{await navigator.clipboard.writeText(text);const b=document.getElementById('copyOfferBtn');if(b){b.textContent='Скопировано ✓';setTimeout(()=>b.textContent='Скопировать',1300)}}catch(e){alert(text)}}
 function setCheckin(btn,val){document.querySelectorAll('.mood').forEach(x=>x.classList.remove('active'));btn.classList.add('active');localStorage.setItem('starter_checkin',val);localStorage.setItem('starter_checkin_date',new Date().toISOString().slice(0,10));localStorage.setItem('starter_last_action',Date.now());updateStreak()}
-function updateStreak(){const today=new Date().toISOString().slice(0,10);const last=localStorage.getItem('starter_checkin_date');const count=parseInt(localStorage.getItem('starter_streak')||'0',10);if(last===today){document.getElementById('streakCount')?.textContent=count||1}else{const prev=new Date();prev.setDate(prev.getDate()-1);const prevDate=prev.toISOString().slice(0,10);const n=last===prevDate?count+1:1;localStorage.setItem('starter_streak',n);document.getElementById('streakCount')?.textContent=n}}
+function updateStreak(){const today=new Date().toISOString().slice(0,10);const last=localStorage.getItem('starter_checkin_date');const count=parseInt(localStorage.getItem('starter_streak')||'0',10);if(last===today){const sc=document.getElementById('streakCount'); if(sc) sc.textContent=count||1}else{const prev=new Date();prev.setDate(prev.getDate()-1);const prevDate=prev.toISOString().slice(0,10);const n=last===prevDate?count+1:1;localStorage.setItem('starter_streak',n);const sc=document.getElementById('streakCount'); if(sc) sc.textContent=n}}
 function renderProductExtras(){updateStreak();const c=localStorage.getItem('starter_checkin');if(c)document.querySelectorAll('.mood').forEach(x=>x.classList.toggle('active',x.textContent===c))}
 function showResult(){
  hideAll();document.getElementById("result").style.display="block";currentIdeas=scoreRoutes(answers).slice(0,3);selectedRoute=currentIdeas[0].name;
