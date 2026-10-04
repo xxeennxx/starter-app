@@ -18,6 +18,39 @@ section{padding:72px 0}.sectionhead{max-width:720px}.sectionhead h2{font-size:42
 .dashboardgrid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}.stat{font-size:38px;font-weight:950;letter-spacing:-2px}.accountbox{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px;background:#121820;border:1px solid var(--line);border-radius:14px}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}.modalbox{width:min(460px,100%);background:#10151c;border:1px solid #313b48;border-radius:24px;padding:25px;box-shadow:var(--shadow)}.modalbox h3{font-size:27px;letter-spacing:-1px;margin:0 0 8px}.field{margin-top:13px}.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}.field input{width:100%;background:#0b0e13;border:1px solid #303946;color:#fff;border-radius:12px;padding:13px}.modalactions{display:flex;gap:9px;margin-top:17px}.notice{margin-top:12px;padding:11px 12px;border-radius:11px;background:#171d25;color:#aeb8c4;font-size:12px;line-height:1.5}.footer{padding:30px 0 60px;color:#66717e;font-size:12px}
 @media(max-width:850px){.hero,.quizgrid,.resultgrid,.dashboardgrid{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.steps{display:none}.options{grid-template-columns:1fr}.hero h1{letter-spacing:-3px}.apphead,.resulttop{flex-direction:column;align-items:flex-start}}
+
+/* ===== V10 VISUAL SYSTEM ===== */
+:root{--accent:#dfff5a;--accent2:#9ef0ff;--card:#10151c;--card2:#141b24;--soft:#1b232e}
+body{background:
+radial-gradient(900px 500px at 10% -10%,rgba(223,255,90,.10),transparent 55%),
+radial-gradient(800px 500px at 90% 0%,rgba(158,240,255,.08),transparent 55%),
+#07090d}
+nav{position:sticky;top:0;z-index:20;background:rgba(7,9,13,.72);backdrop-filter:blur(18px)}
+.logo{display:flex;align-items:center;gap:9px}.logo:before{content:"";width:11px;height:11px;background:var(--accent);border-radius:4px;box-shadow:0 0 28px rgba(223,255,90,.65)}
+.hero{min-height:690px}.hero h1{max-width:780px;text-wrap:balance}.hero p{max-width:610px}
+.hero:before{content:"";position:absolute;inset:76px 0 auto;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);pointer-events:none}
+.mock{position:relative;overflow:hidden}.mock:after{content:"";position:absolute;width:240px;height:240px;border-radius:50%;background:rgba(223,255,90,.08);filter:blur(35px);right:-80px;bottom:-90px}
+.card,.panel,.qcard,.resultmain,.steps{box-shadow:0 12px 40px rgba(0,0,0,.12)}
+.card:hover,.idea:hover{transform:translateY(-2px);border-color:#3b4654;transition:.2s}
+.btn.primary{box-shadow:0 8px 30px rgba(223,255,90,.13)}
+.btn.primary:hover{transform:translateY(-1px);filter:brightness(1.04)}
+.hero .eyebrow,.route{font-weight:950}
+.dashboard-shell{display:grid;grid-template-columns:1.55fr .75fr;gap:16px;margin-top:20px}
+.dash-hero{background:linear-gradient(145deg,#18210f 0%,#11171d 65%);border:1px solid #394a2b;border-radius:28px;padding:28px;position:relative;overflow:hidden}
+.dash-hero:after{content:"";position:absolute;width:280px;height:280px;border-radius:50%;right:-100px;top:-130px;background:rgba(223,255,90,.08);filter:blur(10px)}
+.dash-kicker{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--accent);font-weight:950}
+.dash-hero h3{font-size:42px;line-height:1;letter-spacing:-2.4px;margin:10px 0}
+.dash-hero p{max-width:690px;color:#bdc7d0;line-height:1.6}
+.dash-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}
+.statcard{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:22px}
+.statrow{display:flex;justify-content:space-between;align-items:end;gap:10px}.statbig{font-size:42px;font-weight:950;letter-spacing:-2px}.statlabel{color:var(--muted);font-size:12px}
+.route-list{display:grid;gap:10px;margin-top:15px}
+.route-day{display:grid;grid-template-columns:55px 1fr auto;gap:13px;align-items:center;background:#11171e;border:1px solid var(--line);border-radius:17px;padding:14px}
+.route-day.active{border-color:#52643b;background:#151d13}.route-day.done{opacity:.72}.daynum{width:40px;height:40px;border-radius:13px;background:#202731;display:grid;place-items:center;font-weight:950}.route-day.active .daynum{background:var(--accent);color:#0c1107}.route-title{font-weight:850}.route-sub{font-size:12px;color:var(--muted);margin-top:4px}.route-status{font-size:11px;color:var(--muted);white-space:nowrap}.route-status.done{color:var(--accent)}
+.profile-card{display:grid;gap:12px}.profile-line{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:13px}.profile-line:last-child{border-bottom:0}.profile-line span{color:var(--muted)}
+.dash-nav{display:flex;gap:8px;overflow:auto;margin:20px 0 0}.dash-tab{padding:9px 12px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:12px;cursor:pointer;white-space:nowrap}.dash-tab.active{background:#1b232d;color:#fff;border-color:#46515e}
+.metricbar{height:8px;background:#252c35;border-radius:99px;overflow:hidden;margin-top:10px}.metricbar i{display:block;height:100%;background:var(--accent)}
+@media(max-width:850px){.dashboard-shell{grid-template-columns:1fr}.dash-hero h3{font-size:34px}.route-day{grid-template-columns:45px 1fr}.route-status{grid-column:2}.hero{min-height:auto}}
 </style>
 </head>
 <body>
@@ -33,7 +66,7 @@ section{padding:72px 0}.sectionhead{max-width:720px}.sectionhead h2{font-size:42
 <main id="landing">
 <section class="hero">
 <div>
-  <div class="eyebrow">Не мотивация. Маршрут.</div>
+  <div class="eyebrow">V10 • Не мотивация. Маршрут.</div>
   <h1>Пойми, что запускать. И что делать дальше.</h1>
   <p>СТАРТЕР собирает твой контекст, предлагает несколько реалистичных направлений и превращает выбранное направление в первый конкретный шаг.</p>
   <div class="actions"><button class="btn primary" onclick="openApp()">Пройти диагностику</button><button class="btn secondary" onclick="document.getElementById('how').scrollIntoView()">Как это работает</button></div>
@@ -117,24 +150,59 @@ section{padding:72px 0}.sectionhead{max-width:720px}.sectionhead h2{font-size:42
 
 <section id="dashboard">
 <div class="resulttop">
-<div><div class="eyebrow">Личный кабинет</div><h2>Твой СТАРТЕР</h2><div class="small">Здесь будут жить твои результаты и следующий шаг.</div></div>
+<div><div class="eyebrow">Личный кабинет</div><h2>Твой СТАРТЕР</h2><div class="small">Здесь не просто хранится результат. Здесь лежит твой следующий шаг.</div></div>
 <button class="btn secondary" onclick="signOut()">Выйти</button>
 </div>
-<div class="dashboardgrid">
-<div class="panel">
-<div class="route">Последняя диагностика</div>
-<div class="stat" id="dashMain">—</div>
-<p class="small" id="dashDate">Пока нет сохранённых результатов.</p>
-<button class="btn primary" onclick="openApp()">Пройти новую диагностику</button>
-</div>
-<div class="panel">
-<div class="route">Аккаунт</div>
-<div class="accountbox"><span id="dashEmail">—</span><span class="pill">сохранено</span></div>
-<p class="small" style="margin-top:13px">Следующий слой продукта — история прогресса, новые рекомендации и недельные отчёты.</p>
-</div>
+
+<div class="dashboard-shell">
+  <div>
+    <div class="dash-hero">
+      <div class="dash-kicker">Твой текущий маршрут</div>
+      <h3 id="dashMain">Пока нет маршрута</h3>
+      <p id="dashIntro">Пройди диагностику, чтобы СТАРТЕР собрал для тебя направление и разложил первые 7 дней по шагам.</p>
+      <div class="dash-actions">
+        <button class="btn primary" onclick="openApp()">Пройти диагностику заново</button>
+        <button class="btn secondary" onclick="document.getElementById('dashRoute').scrollIntoView({behavior:'smooth'})">Открыть маршрут ↓</button>
+      </div>
+    </div>
+
+    <div class="dash-nav">
+      <span class="dash-tab active">Маршрут 7 дней</span>
+      <span class="dash-tab">Следующий шаг</span>
+      <span class="dash-tab">История — скоро</span>
+    </div>
+
+    <div class="panel" id="dashRoute" style="margin-top:10px">
+      <div class="route">7 дней → первый реальный сигнал</div>
+      <h3>Не строим империю. Проверяем, есть ли спрос.</h3>
+      <p class="small">Каждый день должен двигать тебя ближе к реальному клиенту, а не к бесконечному изучению темы.</p>
+      <div class="route-list" id="routeList"></div>
+    </div>
+  </div>
+
+  <div class="side">
+    <div class="statcard">
+      <div class="statrow"><div><div class="statlabel">Прогресс маршрута</div><div class="statbig" id="dashProgress">0%</div></div><div class="pill" id="dashDay">День 1 / 7</div></div>
+      <div class="metricbar"><i id="dashProgressBar"></i></div>
+      <p class="small" id="dashProgressText" style="margin-top:11px">Первый шаг ещё впереди.</p>
+    </div>
+
+    <div class="panel profile-card">
+      <div class="route">Аккаунт</div>
+      <div class="accountbox"><span id="dashEmail">—</span><span class="pill">сохранено</span></div>
+      <div class="profile-line"><span>Статус</span><b id="dashStatus">Активен</b></div>
+      <div class="profile-line"><span>Последняя диагностика</span><b id="dashDate">—</b></div>
+      <div class="profile-line"><span>Следующий шаг</span><b id="dashNext">—</b></div>
+    </div>
+
+    <div class="panel">
+      <div class="route">Принцип СТАРТЕРА</div>
+      <h3>Один «да» ценнее ста часов подготовки.</h3>
+      <p class="small">Не покупай инструменты и не строй сложный продукт, пока не увидел хотя бы небольшой сигнал от реальных людей.</p>
+    </div>
+  </div>
 </div>
 </section>
-
 <div class="footer">СТАРТЕР • сначала польза, потом монетизация</div>
 </div>
 
@@ -248,21 +316,195 @@ function toggleTask(i,v){taskState[i].done=v;renderTasks();saveTasksIfLoggedIn()
 function focusTasks(){document.getElementById("tasks").scrollIntoView({behavior:"smooth",block:"center"})}
 function chooseIdea(name){document.getElementById("mainIdea").innerHTML=renderIdea(name,100,true);buildTasks(name);window.scrollTo({top:0,behavior:"smooth"});saveResultIfLoggedIn(name)}
 function showFreshIdeas(){const used=new Set(currentIdeas.map(x=>x.name));const fresh=scoreRoutes(answers).filter(x=>!used.has(x.name)).slice(0,3);if(!fresh.length)return alert("Для этого профиля сейчас мало дополнительных вариантов — попробуй изменить ответы и пройти диагностику ещё раз.");document.getElementById("altIdeas").innerHTML=fresh.map(x=>renderIdea(x.name,x.score)).join("");currentIdeas=[...currentIdeas,...fresh]}
-async function saveResultIfLoggedIn(chosen){
-if(!sb)return;
-const {data:{session}}=await sb.auth.getSession();if(!session)return;
-const main=chosen||currentIdeas[0]?.name;const alternatives=currentIdeas.slice(1).map(x=>x.name);
-const {error}=await sb.from("assessments").insert({user_id:session.user.id,answers,main_direction:main,alternatives});
-if(!error){await sb.from("events").insert({user_id:session.user.id,event_name:"assessment_completed",metadata:{main_direction:main}});await saveTasksIfLoggedIn()}
+
+function routePlan(name){
+const common=[
+["День 1","Сформулировать предложение","Опиши одну проблему, один результат и одного типа клиента."],
+["День 2","Найти 10 потенциальных клиентов","Собери 10 реальных людей или компаний, которым эта проблема может быть знакома."],
+["День 3","Показать оффер","Отправь короткое сообщение 3–5 людям. Цель — получить реакцию, а не сразу продать."],
+["День 4","Разобрать ответы","Запиши, какие слова люди используют и что их реально волнует."],
+["День 5","Сделать тестовую версию","Собери минимальный результат, который можно дать одному человеку."],
+["День 6","Попросить деньги или следующий шаг","Предложи тестовую работу/покупку/созвон — в зависимости от модели."],
+["День 7","Разбор недели","Посчитай ответы, интерес, отказы и реши: усилить, изменить или сменить направление."]
+];
+const special={
+"AI и автоматизация":[
+["День 1","Выбрать одну рутину","Например: заявки, ответы, таблицы или обработка лидов."],
+["День 2","Найти 10 компаний","Выбери одну нишу и выпиши 10 потенциальных клиентов."],
+["День 3","Показать мини-решение","Сделай короткий пример до/после и отправь 3–5 компаниям."],
+["День 4","Собрать возражения","Узнай, что им мешает внедрить такое решение сейчас."],
+["День 5","Собрать демо","Сделай маленькую работающую демонстрацию одного процесса."],
+["День 6","Предложить тест","Дай понятный платный или условно-бесплатный пилот."],
+["День 7","Посчитать сигнал","Сколько ответили? Сколько заинтересовались? Что повторялось?"]
+],
+"Цифровой продукт":[
+["День 1","Выбрать узкую боль","Не «курс по бизнесу», а конкретный результат для конкретного человека."],
+["День 2","Поговорить с 10 людьми","Спроси, как они решают эту проблему сейчас и за что уже платят."],
+["День 3","Проверить обещание","Покажи название, результат и пример содержимого."],
+["День 4","Собрать MVP","Сделай самую маленькую версию продукта."],
+["День 5","Дать 3 людям","Наблюдай, где они застревают и что считают полезным."],
+["День 6","Предложить купить","Назови цену и попроси реальное решение."],
+["День 7","Решение","Оставляем, меняем упаковку или меняем саму проблему."]
+]};
+return special[name]||common;
 }
-async function saveTasksIfLoggedIn(){if(!sb)return;const {data:{session}}=await sb.auth.getSession();if(!session)return;await sb.from("tasks").delete().eq("user_id",session.user.id);if(taskState.length)await sb.from("tasks").insert(taskState.map(t=>({user_id:session.user.id,title:t.title,completed:t.done,completed_at:t.done?new Date().toISOString():null})))}
-async function openDashboard(){if(!sb)return;const {data:{session}}=await sb.auth.getSession();if(!session)return;hideAll();document.getElementById("dashboard").style.display="block";document.getElementById("dashEmail").textContent=session.user.email||"Аккаунт";const {data}=await sb.from("assessments").select("*").eq("user_id",session.user.id).order("created_at",{ascending:false}).limit(1);if(data?.[0]){document.getElementById("dashMain").textContent=data[0].main_direction||"—";document.getElementById("dashDate").textContent="Последняя диагностика: "+new Date(data[0].created_at).toLocaleString("ru-RU")}else{document.getElementById("dashMain").textContent="—";document.getElementById("dashDate").textContent="Пока нет сохранённых результатов."}window.scrollTo({top:0,behavior:"smooth"})}
-function openAuth(){document.getElementById("authModal").style.display="flex";document.getElementById("authNotice").textContent=sb?"Можно создать новый аккаунт или войти в существующий.":"Сначала вставь Supabase URL и publishable key в код сайта."; }
+
+async function saveResultIfLoggedIn(chosen){
+ if(!sb)return;
+ const {data:{session}}=await sb.auth.getSession();if(!session)return;
+ const main=chosen||currentIdeas[0]?.name;
+ const alternatives=currentIdeas.filter(x=>x.name!==main).slice(0,2).map(x=>x.name);
+ const {error}=await sb.from("assessments").insert({user_id:session.user.id,answers,main_direction:main,alternatives});
+ if(!error){
+   await sb.from("events").insert({user_id:session.user.id,event_name:"assessment_completed",metadata:{main_direction:main}});
+   await saveRouteIfLoggedIn(main);
+ }
+}
+
+async function saveRouteIfLoggedIn(name){
+ if(!sb)return;
+ const {data:{session}}=await sb.auth.getSession();if(!session)return;
+ const plan=routePlan(name);
+ await sb.from("tasks").delete().eq("user_id",session.user.id);
+ const rows=plan.map((d,i)=>({
+   user_id:session.user.id,
+   title:`${d[0]} • ${d[1]} — ${d[2]}`,
+   completed:false,
+   completed_at:null
+ }));
+ const {error}=await sb.from("tasks").insert(rows);
+ if(error) console.warn("tasks save:",error.message);
+}
+
+async function saveTasksIfLoggedIn(){
+ if(!sb)return;
+ const {data:{session}}=await sb.auth.getSession();if(!session)return;
+ // Сохраняем три сегодняшних действия как отдельные задачи.
+ await sb.from("tasks").delete().eq("user_id",session.user.id);
+ const main=currentIdeas[0]?.name||"Услуга для малого бизнеса";
+ const plan=routePlan(main);
+ const rows=plan.map((d,i)=>({
+   user_id:session.user.id,
+   title:`${d[0]} • ${d[1]} — ${d[2]}`,
+   completed:i===0 ? taskState.every(x=>x.done) : false,
+   completed_at:i===0&&taskState.every(x=>x.done)?new Date().toISOString():null
+ }));
+ await sb.from("tasks").insert(rows);
+}
+
+function parseRouteRows(rows){
+ return (rows||[]).map((r,i)=>{
+   const m=r.title.match(/^(День\s+\d+)\s+•\s+(.+?)\s+—\s+(.+)$/);
+   return {id:r.id,day:m?.[1]||`День ${i+1}`,title:m?.[2]||r.title,desc:m?.[3]||"",done:!!r.completed};
+ });
+}
+
+async function toggleRouteTask(id,done){
+ if(!sb)return;
+ const {data:{session}}=await sb.auth.getSession();if(!session)return;
+ const {error}=await sb.from("tasks").update({completed:done,completed_at:done?new Date().toISOString():null}).eq("id",id).eq("user_id",session.user.id);
+ if(error){console.warn(error.message);return}
+ await openDashboard();
+}
+
+function renderDashboardRoute(rows,main){
+ const parsed=parseRouteRows(rows);
+ const fallback=routePlan(main||"Услуга для малого бизнеса").map((d,i)=>({id:null,day:d[0],title:d[1],desc:d[2],done:false}));
+ const items=parsed.length?parsed:fallback;
+ const done=items.filter(x=>x.done).length;
+ const pct=Math.round(done/items.length*100);
+ document.getElementById("dashProgress").textContent=pct+"%";
+ document.getElementById("dashProgressBar").style.width=pct+"%";
+ document.getElementById("dashDay").textContent=`День ${Math.min(done+1,7)} / 7`;
+ document.getElementById("dashProgressText").textContent=pct===100?"Маршрут недели пройден. Теперь нужен следующий цикл.":done===0?"Начни с первого дня — один конкретный оффер.":`Готово ${done} из ${items.length}. Следующий шаг уже перед тобой.`;
+ document.getElementById("dashRoute").dataset.items=JSON.stringify(items);
+ document.getElementById("routeList").innerHTML=items.map((x,i)=>`
+   <div class="route-day ${!x.done&&i===done?"active":""} ${x.done?"done":""}">
+     <div class="daynum">${i+1}</div>
+     <div><div class="route-title">${x.title}</div><div class="route-sub">${x.desc}</div></div>
+     <div class="route-status ${x.done?"done":""}">
+       ${x.id?`<label style="display:flex;align-items:center;gap:7px;cursor:pointer"><input class="check" type="checkbox" ${x.done?"checked":""} onchange="toggleRouteTask('${x.id}',this.checked)">${x.done?"готово":"сделать"}</label>`:(x.done?"готово":"дальше")}
+     </div>
+   </div>`).join("");
+ document.getElementById("dashNext").textContent=items.find(x=>!x.done)?.title||"Новый цикл";
+}
+
+async function openDashboard(){
+ if(!sb)return;
+ const {data:{session}}=await sb.auth.getSession();if(!session)return;
+ hideAll();document.getElementById("dashboard").style.display="block";
+ document.getElementById("dashEmail").textContent=session.user.email||"Аккаунт";
+ const {data:assessments}=await sb.from("assessments").select("*").eq("user_id",session.user.id).order("created_at",{ascending:false}).limit(1);
+ const last=assessments?.[0];
+ const main=last?.main_direction||"Пока нет маршрута";
+ document.getElementById("dashMain").textContent=main;
+ document.getElementById("dashIntro").textContent=last?"СТАРТЕР уже знает твой основной путь. Теперь задача — не изучать бесконечно, а получить первый реальный сигнал от рынка.":"Пройди диагностику, чтобы СТАРТЕР собрал для тебя направление и разложил первые 7 дней по шагам.";
+ document.getElementById("dashDate").textContent=last?new Date(last.created_at).toLocaleDateString("ru-RU"):"—";
+ const {data:tasks}=await sb.from("tasks").select("*").eq("user_id",session.user.id).order("created_at",{ascending:true});
+ renderDashboardRoute(tasks||[],main);
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function openAuth(){
+ document.getElementById("authModal").style.display="flex";
+ document.getElementById("authNotice").textContent=sb?"Введи email и пароль. СТАРТЕР сам поймёт: это вход или новый аккаунт.":"Сначала вставь Supabase URL и publishable key в код сайта.";
+}
 function closeAuth(){document.getElementById("authModal").style.display="none"}
-async function authSubmit(){if(!sb){alert("Supabase пока не подключён в коде.");return}const email=document.getElementById("email").value.trim(),password=document.getElementById("password").value;if(!email||password.length<6){alert("Нужен email и пароль минимум из 6 символов.");return}let res=await sb.auth.signInWithPassword({email,password});if(res.error){res=await sb.auth.signUp({email,password})}if(res.error){document.getElementById("authNotice").textContent=res.error.message;return}closeAuth();updateAuthUI();if(document.getElementById("result").style.display!=="none")await saveResultIfLoggedIn();await openDashboard()}
-async function signOut(){if(sb)await sb.auth.signOut();updateAuthUI();closeAuth();closeApp()}
-async function updateAuthUI(){if(!sb)return;const {data:{session}}=await sb.auth.getSession();document.getElementById("authBtn").textContent=session?"Кабинет":"Войти";document.getElementById("authBtn").onclick=session?openDashboard:openAuth}
-if(sb){sb.auth.onAuthStateChange(()=>updateAuthUI());updateAuthUI()}
+
+async function authSubmit(){
+ if(!sb){alert("Supabase пока не подключён в коде.");return}
+ const email=document.getElementById("email").value.trim();
+ const password=document.getElementById("password").value;
+ if(!email||password.length<6){alert("Нужен email и пароль минимум из 6 символов.");return}
+ document.getElementById("authNotice").textContent="Проверяем аккаунт…";
+ let res=await sb.auth.signInWithPassword({email,password});
+ if(res.error){
+   const signup=await sb.auth.signUp({email,password});
+   if(signup.error){
+     document.getElementById("authNotice").textContent=signup.error.message;
+     return;
+   }
+   if(!signup.data.session){
+     document.getElementById("authNotice").textContent="Аккаунт создан. Подтверди email в письме, затем вернись сюда и нажми «Войти».";
+     return;
+   }
+   res=signup;
+ }
+ if(res.error){document.getElementById("authNotice").textContent=res.error.message;return}
+ closeAuth();
+ await updateAuthUI();
+ if(document.getElementById("result").style.display!=="none")await saveResultIfLoggedIn();
+ await openDashboard();
+}
+
+async function signOut(){
+ if(sb)await sb.auth.signOut();
+ await updateAuthUI();
+ closeAuth();
+ closeApp();
+}
+
+async function updateAuthUI(){
+ if(!sb)return;
+ const {data:{session}}=await sb.auth.getSession();
+ const btn=document.getElementById("authBtn");
+ if(session){
+   btn.textContent="Кабинет";
+   btn.onclick=()=>openDashboard();
+   const p=document.getElementById("profileLabel");if(p)p.textContent="Результат сохранится";
+ }else{
+   btn.textContent="Войти";
+   btn.onclick=()=>openAuth();
+   const p=document.getElementById("profileLabel");if(p)p.textContent="Результат пока локальный";
+ }
+}
+
+if(sb){
+ sb.auth.onAuthStateChange((event,session)=>{
+   setTimeout(()=>updateAuthUI(),50);
+ });
+ updateAuthUI();
+}
 </script>
 </body>
 </html>
