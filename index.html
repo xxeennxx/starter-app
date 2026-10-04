@@ -53,6 +53,316 @@ section{padding:76px 0}.sectionHead{max-width:730px}.sectionHead h2{font-size:46
 .footer{padding:35px 0 65px;color:#8a857b;font-size:11px;border-top:1px solid rgba(0,0,0,.07)}
 @media(max-width:900px){.hero,.quizGrid,.resultGrid,.dashboardTop{grid-template-columns:1fr}.featureGrid{grid-template-columns:1fr}.steps{display:none}.timeline{grid-template-columns:repeat(4,1fr)}}
 @media(max-width:620px){.wrap{padding:0 15px}.hero{padding:52px 0}.hero h1{font-size:54px;letter-spacing:-4px}.hero h1 em:after{height:11px}.sectionHead h2{font-size:36px}.options{grid-template-columns:1fr}.qcard{padding:22px}.qtitle{font-size:28px}.appHead,.topLine{flex-direction:column}.resultHero h2{font-size:35px}.resultGrid{gap:11px}.timeline{grid-template-columns:repeat(2,1fr)}.navright .pill{display:none}.routeDay{grid-template-columns:43px 1fr}.routeDay .status{grid-column:2}.previewRows{grid-template-columns:1fr 1fr}}
+
+/* ===== STARTER V12 — EDITORIAL / ANTI-AI VISUAL SYSTEM ===== */
+:root{
+  --ink:#11110f;
+  --muted:#68665f;
+  --paper:#f3efe5;
+  --white:#fffdf6;
+  --lime:#d7ff3f;
+  --red:#ff5a43;
+  --blue:#315cff;
+  --purple:#7c54ff;
+  --yellow:#ffd447;
+  --line:#1a1916;
+  --softline:#d5cfc1;
+  --shadow:8px 8px 0 #11110f;
+  --radius:12px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:
+    linear-gradient(rgba(17,17,15,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(17,17,15,.045) 1px,transparent 1px),
+    var(--paper);
+  background-size:32px 32px;
+  color:var(--ink);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+body:before,body:after{display:none}
+.wrap{max-width:1240px;padding:0 28px}
+nav{height:76px;border-bottom:2px solid var(--ink)}
+.logo{font-size:25px;letter-spacing:-1.8px}
+.logoMark{width:28px;height:28px;border-radius:5px;transform:rotate(3deg);background:var(--lime);border:2px solid var(--ink)}
+.logoMark:after{background:var(--ink);width:8px;height:8px;right:4px;top:4px}
+.pill{
+  border:1px solid var(--ink);background:var(--white);border-radius:4px;
+  font-size:10px;text-transform:uppercase;letter-spacing:.08em
+}
+.btn{
+  border-radius:5px;padding:13px 17px;border:2px solid var(--ink);
+  transition:transform .12s,box-shadow .12s;
+}
+.btn:hover{transform:translate(-2px,-2px)}
+.primary{box-shadow:4px 4px 0 var(--ink)}
+.lime{background:var(--lime);color:var(--ink);box-shadow:4px 4px 0 var(--ink)}
+.secondary{background:var(--white);border:2px solid var(--ink)}
+.danger{background:#ffd8d1;border:2px solid var(--ink)}
+.hero{
+  padding:74px 0 92px;
+  grid-template-columns:1.08fr .92fr;
+  gap:70px;
+}
+.kicker{
+  font-size:10px;letter-spacing:.16em;border-left:5px solid var(--red);
+  padding-left:9px;text-transform:uppercase
+}
+.hero h1{
+  font-family:Georgia,"Times New Roman",serif;
+  font-weight:900;font-size:clamp(52px,7.2vw,96px);
+  line-height:.9;letter-spacing:-5px;margin:18px 0 27px
+}
+.hero h1 em:after{height:11px;bottom:7px;left:0;right:0;background:var(--lime);transform:none}
+.lead{font-size:18px;line-height:1.6;max-width:650px}
+.trust span{border:1px solid var(--ink);border-radius:4px;background:var(--white)}
+.heroCard{transform:rotate(1.5deg)}
+.blob{display:none}
+.preview{
+  background:var(--white);border:2px solid var(--ink);border-radius:7px;
+  padding:18px;box-shadow:var(--shadow);backdrop-filter:none
+}
+.previewTop{border-bottom:2px solid var(--ink);padding-bottom:13px}
+.live{border-radius:3px;background:var(--lime);border:1px solid var(--ink);padding:6px 8px}
+.routeCard{border-radius:5px;border:2px solid var(--ink);background:var(--ink);box-shadow:4px 4px 0 var(--red)}
+.routeCard:after{display:none}
+.routeCard h3{font-family:Georgia,"Times New Roman",serif;font-size:31px}
+.routeLine{background:#3b3a35;height:9px}
+.routeLine b{background:var(--lime)}
+.previewRows{gap:0;border-top:2px solid var(--ink);border-left:2px solid var(--ink)}
+.previewRow{border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);border-radius:0;background:#eee9dc}
+section{padding:84px 0}
+.sectionHead h2,.appHead h2,.topLine h2{
+  font-family:Georgia,"Times New Roman",serif;font-weight:900
+}
+.featureGrid{gap:0;border-top:2px solid var(--ink);border-left:2px solid var(--ink)}
+.feature{
+  border:0;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);
+  border-radius:0;box-shadow:none;background:var(--white)!important;
+  min-height:230px;padding:24px
+}
+.feature:nth-child(2){background:var(--lime)!important}
+.feature:nth-child(3){background:#dce3ff!important}
+.featureNum{font-family:Georgia,serif;font-size:28px;color:var(--ink)}
+.feature h3{margin:54px 0 8px;font-family:Georgia,serif}
+#app,#result,#dashboard{padding:38px 0 110px}
+.appHead,.topLine{border-bottom:2px solid var(--ink);padding-bottom:18px}
+.appHead h2,.topLine h2{font-size:44px}
+.progress{height:12px;border-radius:0;background:#d5d0c4;border:1px solid var(--ink);padding:2px}
+.bar{background:var(--lime);border-right:2px solid var(--ink)}
+.quizGrid{grid-template-columns:190px 1fr;gap:0}
+.steps{
+  border:2px solid var(--ink);border-radius:0;background:var(--white);
+  padding:0;position:sticky;top:12px
+}
+.step{
+  border-bottom:1px solid var(--softline);border-radius:0;padding:11px 12px;
+  margin:0;color:#77736a;font-size:10px
+}
+.step:last-child{border-bottom:0}
+.step.active{background:var(--ink);color:var(--lime)}
+.step.done{color:var(--ink);font-weight:900}
+.qcard{
+  margin-left:20px;background:var(--white);border:2px solid var(--ink);
+  border-radius:0;padding:38px 40px;box-shadow:var(--shadow);position:relative;overflow:hidden
+}
+.qcard:before{
+  content:"DECISION /";position:absolute;right:25px;top:23px;
+  font-size:9px;font-weight:1000;letter-spacing:.18em;color:#aaa49a
+}
+.qnum{color:var(--red);font-size:10px;letter-spacing:.18em}
+.qtitle{
+  font-family:Georgia,"Times New Roman",serif;font-size:44px;line-height:1.02;
+  letter-spacing:-2.5px;max-width:820px;margin:13px 0 10px
+}
+.hint{max-width:690px;color:#66635c}
+.options{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:0;border-top:2px solid var(--ink);border-left:2px solid var(--ink);
+  margin-top:27px
+}
+.opt{
+  position:relative;display:block;min-height:92px;
+  border:0;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);
+  border-radius:0;background:#f0ece2;color:var(--ink);
+  padding:18px 18px 16px 58px;text-align:left;
+  font-weight:850;transition:background .12s,transform .12s
+}
+.opt:before{
+  content:attr(data-num);position:absolute;left:17px;top:17px;
+  font-family:Georgia,serif;font-size:25px;font-weight:900;color:#aaa39a
+}
+.opt:hover{border-color:var(--ink);background:#fff;transform:none}
+.opt.selected{background:var(--lime);box-shadow:none}
+.opt.selected:before{color:var(--ink)}
+.opt small{
+  display:block;color:#77736b;margin-top:6px;font-size:9px;
+  text-transform:uppercase;letter-spacing:.1em
+}
+.custom{
+  margin-top:14px;border:2px solid var(--ink);border-radius:0;background:#fff;
+  min-height:100px
+}
+.footerActions{border-top:2px solid var(--ink);padding-top:18px;margin-top:22px}
+.resultHero{
+  border:2px solid var(--ink);border-radius:0;background:var(--ink);
+  padding:38px;margin-bottom:20px;box-shadow:var(--shadow)
+}
+.resultHero:after{display:none}
+.resultHero h2{
+  font-family:Georgia,"Times New Roman",serif;font-size:55px;
+  line-height:.98;letter-spacing:-3.5px;max-width:820px
+}
+.resultHero p{max-width:780px}
+.resultGrid{grid-template-columns:minmax(0,1.55fr) 330px;gap:20px}
+.mainCard,.sideCard{
+  background:var(--white);border:2px solid var(--ink);border-radius:0;padding:24px;
+  box-shadow:none
+}
+.direction{
+  background:var(--lime);border:2px solid var(--ink);border-radius:0;
+  padding:27px;margin-bottom:20px;box-shadow:6px 6px 0 var(--ink)
+}
+.direction h3{
+  font-family:Georgia,"Times New Roman",serif;font-size:39px;line-height:1;
+  letter-spacing:-2px;margin:9px 0 10px
+}
+.routeTag{font-size:9px;letter-spacing:.17em}
+.meta{gap:0;border-top:1px solid var(--ink);margin:18px 0 14px}
+.chip{
+  border:0;border-right:1px solid var(--ink);border-radius:0;
+  background:transparent;padding:8px 10px 7px 0;margin-right:10px
+}
+.why{gap:0;border-top:2px solid var(--ink);margin-top:18px}
+.why div{
+  border:0;border-bottom:1px solid rgba(17,17,15,.25);border-radius:0;
+  padding:13px 0;background:transparent;font-size:13px
+}
+.altTitle{
+  font-family:Georgia,"Times New Roman",serif;font-size:30px;
+  border-bottom:2px solid var(--ink);padding-bottom:10px;margin:26px 0 0
+}
+.ideas{gap:0;border-left:2px solid var(--ink)}
+.idea{
+  border:0;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);
+  border-radius:0;background:#f0ece2;padding:20px 20px 20px 25px;position:relative
+}
+.idea:before{
+  content:"ALT";position:absolute;right:18px;top:18px;font-size:9px;
+  letter-spacing:.15em;color:#8b867d;font-weight:900
+}
+.idea h4{font-family:Georgia,"Times New Roman",serif;font-size:24px}
+.idea p{max-width:760px}
+.ideaActions{margin-top:15px}
+.emptyFit{
+  border:2px dashed var(--ink);border-radius:0;background:#fff0b8;
+  padding:18px;margin-top:18px
+}
+.sideStack{gap:16px}
+.sideCard h3{font-family:Georgia,serif;font-size:23px}
+.today{background:#fff0e8}
+.tomorrow{background:#dfe6ff}
+.task{border-bottom:1px solid rgba(17,17,15,.2)}
+.check{border:2px solid var(--ink);border-radius:2px}
+.check:checked{background:var(--lime)}
+.taskbar{height:10px;border:1px solid var(--ink);background:#d7d1c4;border-radius:0;overflow:hidden}
+.taskbar i{background:var(--ink)}
+.big{font-family:Georgia,serif;font-size:31px;line-height:1.03}
+.score{border-top:2px solid var(--ink);padding-top:15px}
+.ring{border:7px solid var(--lime);border-right-color:var(--ink);border-radius:50%}
+.timeline{gap:0;border-left:2px solid var(--ink);border-top:2px solid var(--ink)}
+.day{
+  border:0;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);
+  border-radius:0;background:#eee9dc;min-width:95px
+}
+.day.current{background:var(--lime)}
+.day.done{background:#dfe6ff}
+.routePanel{
+  background:var(--white);border:2px solid var(--ink);border-radius:0;
+  padding:25px;margin-top:20px;box-shadow:var(--shadow)
+}
+.routePanelHead{border-bottom:2px solid var(--ink);padding-bottom:14px}
+.routePanelHead h3{font-family:Georgia,serif;font-size:31px}
+.routeDays{gap:0;border-left:2px solid var(--ink)}
+.routeDay{
+  border:0;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);
+  border-radius:0;background:#f0ece2;padding:18px
+}
+.routeDay.done{background:var(--lime)}
+.routeDayNum{border:2px solid var(--ink);border-radius:50%;background:var(--white)}
+.status{font-size:9px;letter-spacing:.1em;border:1px solid var(--ink);padding:5px 7px;background:var(--white)}
+.modal{background:rgba(17,17,15,.78);backdrop-filter:none}
+.modalBox{
+  border:2px solid var(--ink);border-radius:0;background:var(--white);
+  box-shadow:10px 10px 0 var(--lime);padding:28px
+}
+.tabs{border-bottom:2px solid var(--ink);border-radius:0}
+.tab{border-radius:0}.tab.active{background:var(--ink);color:white}
+.field input{border:2px solid var(--ink);border-radius:0;background:#fff}
+.notice{
+  border:2px solid var(--ink)!important;border-radius:0!important;
+  background:#eee9dc!important;color:var(--ink)!important;
+  padding:12px 14px!important;position:relative;padding-left:38px!important
+}
+.notice:before{
+  content:"";width:10px;height:10px;background:var(--red);border:1px solid var(--ink);
+  position:absolute;left:15px;top:15px
+}
+.notice.good{background:var(--lime)!important}
+.footer{border-top:2px solid var(--ink);padding:20px 28px}
+@media(max-width:900px){
+  .hero,.resultGrid{grid-template-columns:1fr}
+  .quizGrid{grid-template-columns:1fr}
+  .steps{position:static;display:grid;grid-template-columns:repeat(4,1fr);margin-bottom:15px}
+  .step{display:none}.step.active,.step.done{display:block}
+  .qcard{margin-left:0}
+}
+@media(max-width:650px){
+  .wrap{padding:0 16px}
+  .hero{padding-top:48px}
+  .hero h1{font-size:55px;letter-spacing:-3px}
+  .qcard{padding:25px 20px}
+  .qcard:before{display:none}
+  .qtitle{font-size:34px}
+  .options{grid-template-columns:1fr}
+  .resultHero h2{font-size:42px}
+  .featureGrid{grid-template-columns:1fr}
+  .steps{grid-template-columns:repeat(3,1fr)}
+}
+
+
+/* ===== STARTER V13 — BLUE PRODUCT SYSTEM ===== */
+:root{
+  --paper:#eef4ff;--white:#fbfdff;--ink:#0b1630;--muted:#596780;
+  --blue:#2457ff;--blue2:#4b8dff;--cyan:#7ee7ff;--line:#10204a;
+  --softline:#cbd8f5;--lime:#b9ff4a;--red:#ff5c69;--shadow:8px 8px 0 #0b1630;
+}
+body{background:linear-gradient(rgba(16,32,74,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(16,32,74,.045) 1px,transparent 1px),var(--paper);background-size:32px 32px}
+nav{border-bottom-color:var(--line)}
+.logoMark{background:var(--blue);border-color:var(--line)}.logoMark:after{background:var(--cyan)}
+.pill{border-color:var(--line);background:#fff}.secondary{background:#fff;border-color:var(--line)}.primary{background:var(--blue);box-shadow:4px 4px 0 var(--ink);color:#fff}.lime{background:var(--lime)}
+.hero h1 em:after{background:var(--cyan)}
+.kicker{border-left-color:var(--blue)}
+.preview{box-shadow:var(--shadow);border-color:var(--line)}.routeCard{box-shadow:4px 4px 0 var(--blue);border-color:var(--line)}.routeLine b{background:var(--cyan)}
+.feature:nth-child(2){background:#dce8ff!important}.feature:nth-child(3){background:#c8f6ff!important}
+.progress{border-color:var(--line)}.bar{background:var(--blue);border-right-color:var(--line)}
+.qcard{box-shadow:var(--shadow)}.qnum{color:var(--blue)}.opt.selected{background:#cfe0ff}.opt.selected:before{color:var(--blue)}
+.resultHero{box-shadow:var(--shadow)}.resultHero .kicker{color:var(--cyan)}
+.direction{background:linear-gradient(135deg,#dce8ff,#dff9ff 70%,#eef0ff);border-color:#a9bce8}
+.sideCard.today{background:#e8f1ff}.taskbar i{background:var(--blue)!important}.routeDay.done{background:#e3f2ff;border-color:#b8d1ff}.routeDay.done .routeDayNum{background:var(--cyan)}
+.dashHero{box-shadow:var(--shadow)}
+.modalBox{box-shadow:var(--shadow)}.tab.active{color:var(--blue)}
+.notice.good{background:#e3f2ff;color:#183b9b}
+.heroCard{transform:rotate(.8deg)}
+.blueBand{margin-top:25px;border:2px solid var(--line);background:var(--blue);color:#fff;padding:14px 16px;display:flex;justify-content:space-between;gap:15px;align-items:center;box-shadow:4px 4px 0 var(--ink);font-size:12px}
+.blueBand b{color:var(--cyan)}
+.miniProof{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:2px solid var(--line);margin-top:30px;background:var(--white)}
+.miniProof>div{padding:17px;border-right:2px solid var(--line)}.miniProof>div:last-child{border-right:0}.miniProof b{font-size:23px;display:block}.miniProof span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.focusBox{border:2px solid var(--line);background:#dce8ff;padding:17px;margin-top:14px}.focusBox b{display:block;font-family:Georgia,serif;font-size:22px;margin-bottom:5px}.focusBox p{margin:0;color:#33456d;line-height:1.5;font-size:13px}
+.routeDay button{border:2px solid var(--line);background:#fff;padding:7px 9px;font-size:10px;font-weight:900}.routeDay button:hover{background:var(--cyan)}
+@media(max-width:650px){.miniProof{grid-template-columns:1fr}.miniProof>div{border-right:0;border-bottom:2px solid var(--line)}.miniProof>div:last-child{border-bottom:0}.blueBand{align-items:flex-start;flex-direction:column}}
+
 </style>
 </head>
 <body>
@@ -60,7 +370,7 @@ section{padding:76px 0}.sectionHead{max-width:730px}.sectionHead h2{font-size:46
 <nav>
   <div class="logo"><span class="logoMark"></span>СТАРТЕР</div>
   <div class="navright">
-    <span class="pill">v11 • тестируем на людях</span>
+    <span class="pill">v13 • ранний доступ</span>
     <button class="btn secondary" id="authBtn" onclick="openAuth()">Войти</button>
   </div>
 </nav>
@@ -75,7 +385,7 @@ section{padding:76px 0}.sectionHead{max-width:730px}.sectionHead h2{font-size:46
       <button class="btn lime" onclick="openApp()">Пройти диагностику <span>↗</span></button>
       <button class="btn secondary" onclick="document.getElementById('how').scrollIntoView()">Посмотреть как работает</button>
     </div>
-    <div class="trust"><span>15 вопросов</span><span>3 подходящих пути</span><span>7 дней до первого сигнала</span></div>
+    <div class="trust"><span>15 вопросов</span><span>3 подходящих пути</span><span>7 дней до первого сигнала</span></div><div class="blueBand"><span>Не надо знать, какой бизнес строить.</span><b>Нужно понять следующий ход →</b></div>
   </div>
   <div class="heroCard">
     <div class="blob"></div>
@@ -106,6 +416,7 @@ section{padding:76px 0}.sectionHead{max-width:730px}.sectionHead h2{font-size:46
     <div class="feature"><div class="featureNum">02 / ВЫБОР</div><h3>Три пути вместо одного</h3><p>Главный вариант + две альтернативы. Не нравится вообще — запускаем другой угол поиска.</p></div>
     <div class="feature"><div class="featureNum">03 / ДЕЙСТВИЕ</div><h3>7 дней без болтовни</h3><p>Маршрут построен вокруг первого сигнала рынка, а не вокруг бесконечной подготовки.</p></div>
   </div>
+  <div class="miniProof"><div><b>01</b><span>Понять, что тебе подходит</span></div><div><b>02</b><span>Выбрать путь и оффер</span></div><div><b>03</b><span>Получить первый сигнал</span></div></div>
 </section>
 </main>
 
@@ -146,6 +457,7 @@ section{padding:76px 0}.sectionHead{max-width:730px}.sectionHead h2{font-size:46
         <div class="taskbar"><i id="taskbar"></i></div>
         <div style="display:flex;justify-content:space-between;margin-top:7px"><span class="small">Готово</span><b id="taskpct">0%</b></div>
       </div>
+      <div class="focusBox"><b>Твой фокус сегодня</b><p>Не строить идеальный бизнес. Сделать один шаг, который можно проверить человеком уже сегодня.</p></div>
       <div class="sideCard tomorrow">
         <div class="routeTag">зачем возвращаться</div><h3>Завтра тебя ждёт</h3>
         <div class="big">первые 10 потенциальных клиентов</div>
@@ -176,17 +488,17 @@ section{padding:76px 0}.sectionHead{max-width:730px}.sectionHead h2{font-size:46
   </div>
 </section>
 
-<div class="footer">СТАРТЕР • сначала полезность, потом монетизация • v11</div>
+<div class="footer">СТАРТЕР • сначала полезность, потом монетизация • v13</div>
 </div>
 
 <div class="modal" id="authModal">
   <div class="modalBox">
-    <div class="modalTop"><div><div class="routeTag">АККАУНТ</div><h3 id="authTitle">Сохрани свой маршрут</h3><div class="small">Без аккаунта можно пройти диагностику. Аккаунт нужен только, чтобы сохранить прогресс.</div></div><button class="close" onclick="closeAuth()">×</button></div>
+    <div class="modalTop"><div><div class="routeTag">АККАУНТ</div><h3 id="authTitle">Сохрани свой маршрут</h3><div class="small">Email + пароль. Никаких кодов и подтверждений — просто создай аккаунт и заходи.</div></div><button class="close" onclick="closeAuth()">×</button></div>
     <div class="tabs"><button class="tab active" id="tabLogin" onclick="setAuthMode('login')">Войти</button><button class="tab" id="tabSignup" onclick="setAuthMode('signup')">Создать аккаунт</button></div>
     <div class="field"><label>Email</label><input id="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
     <div class="field"><label>Пароль</label><input id="password" type="password" autocomplete="current-password" placeholder="минимум 6 символов"></div>
     <div class="modalActions"><button class="btn lime" id="authAction" onclick="submitAuth()">Войти</button><button class="btn secondary" onclick="closeAuth()">Закрыть</button></div>
-    <div class="notice" id="authNotice">Для теста используй один аккаунт и не нажимай «Создать аккаунт» несколько раз подряд.</div>
+    <div class="notice" id="authNotice">Регистрация без кода: создал аккаунт → сразу внутри STARTER.</div>
   </div>
 </div>
 
@@ -197,34 +509,6 @@ const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_-YaqvGtiBPvWCESMzhnQbA_bFHwFfsM
 const supabaseReady = SUPABASE_URL.startsWith("https://") && SUPABASE_PUBLISHABLE_KEY.startsWith("sb_");
 const sb = supabaseReady ? window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY) : null;
 
-const questions=[
-{title:"Сколько денег ты реально готов вложить на старте?",hint:"Если 0 ₽ — не будем предлагать модели, которым нужен бюджет.",key:"budget",opts:["0 ₽","до 5 000 ₽","5 000–20 000 ₽","20 000–100 000 ₽","100 000 ₽+"]},
-{title:"Сколько времени ты можешь уделять этому регулярно?",hint:"Выбирай то, что реально выдержать.",key:"time",opts:["до 30 минут в день","1–2 часа","3–5 часов","5+ часов","только по выходным"]},
-{title:"Какие навыки у тебя уже есть?",hint:"Можно выбрать несколько.",key:"skills",multi:true,opts:["продажи","переговоры","тексты","дизайн","монтаж видео","фото","программирование","аналитика","организация","обучение других","соцсети","работа с клиентами","ничего уверенного пока нет"],other:true},
-{title:"Что тебе нравится делать или изучать?",hint:"Выбирай то, чем не против заниматься месяцами.",key:"interests",multi:true,opts:["технологии","контент","деньги и бизнес","красота и стиль","спорт","игры","образование","психология и саморазвитие","локальные услуги","путешествия","еда","автомобили","не знаю"],other:true},
-{title:"Какой формат работы тебе ближе?",hint:"Можно несколько.",key:"format",multi:true,opts:["полностью онлайн","удалённые услуги","работа с компаниями","частные клиенты","цифровой продукт","контент/медиа","неважно"]},
-{title:"Насколько тебе комфортно продавать и общаться?",hint:"Это сильно влияет на подходящую модель.",key:"sales",opts:["готов активно продавать","могу общаться, но без давления","предпочитаю переписку","хочу минимум общения","пока боюсь продавать"]},
-{title:"Что тебе важнее в ближайшие 6 месяцев?",hint:"Максимум два.",key:"goal",multi:true,max:2,opts:["первые деньги","стабильный дополнительный доход","полностью заменить работу","создать бизнес надолго","создать цифровой продукт","собрать аудиторию","научиться новому"]},
-{title:"Какой результат по доходу ты хочешь?",hint:"Это ориентир, а не обещание.",key:"income",opts:["до 30 000 ₽/мес","30–50 000 ₽","50–100 000 ₽","100–300 000 ₽","300 000 ₽+"]},
-{title:"Есть ли у тебя уже аудитория или база клиентов?",hint:"Соцсети, бывшие клиенты, знакомые в сфере — всё считается.",key:"audience",multi:true,opts:["нет","личные соцсети","Telegram/сообщество","профессиональные контакты","бывшие клиенты","локальная сеть знакомых","аудитория 1 000+"],other:true},
-{title:"Что ты точно НЕ хочешь делать?",hint:"Ограничения так же важны, как желания.",key:"avoid",multi:true,opts:["холодные звонки","публичные видео","вести соцсети","работать по найму","физические товары","работать с людьми","сидеть за компьютером весь день","вкладывать деньги"],other:true},
-{title:"Какой у тебя сейчас статус?",hint:"Нам нужна реальность, а не идеальный сценарий.",key:"status",opts:["работаю полный день","работаю неполный день","учусь","между работами","есть небольшой бизнес","фрилансю"]},
-{title:"Насколько быстро хочешь проверить идею?",hint:"Чем быстрее проверяем, тем меньше фантазируем.",key:"speed",opts:["за 24–48 часов","за неделю","за 2–4 недели","готов несколько месяцев"]},
-{title:"Что у тебя уже есть для старта?",hint:"Можно несколько.",key:"assets",multi:true,opts:["ноутбук","смартфон","камера","портфолио","личный бренд","опыт в отрасли","готовый продукт","доступ к аудитории","ничего особенного"],other:true},
-{title:"Что сейчас больше всего мешает?",hint:"Выбери всё, что похоже.",key:"block",multi:true,opts:["нет идеи","нет денег","не знаю, что продавать","нет навыков","не умею продавать","боюсь провала","не хватает дисциплины","не понимаю, с чего начать","уже пробовал и не получилось"],other:true},
-{title:"Опиши своими словами, чего ты хочешь добиться.",hint:"Можно написать как другу.",key:"free",text:true,opts:[]}
-];
-
-const routes={
-"AI и автоматизация":{desc:"Настраивать для малого бизнеса простые AI- и автоматизационные решения: заявки, ответы, таблицы, контент и рутину.",money:"Настроить автоматизацию заявок или клиентских ответов за фиксированную сумму.",pain:"придётся разбираться в инструментах и объяснять ценность клиенту",tags:["технологии","B2B","быстрый тест"],days:["Найти одну рутинную задачу бизнеса","Выбрать 10 компаний одной ниши","Показать им простое решение","Разобрать ответы и возражения","Собрать мини-демо","Предложить пилот одному клиенту","Решить: масштабировать, изменить или закрыть"]},
-"Услуга для малого бизнеса":{desc:"Продавать компаниям конкретный результат: упаковку, поиск клиентов, контент, процессы или другую понятную задачу.",money:"Взять одну проблему бизнеса и решить её за фиксированную стоимость.",pain:"нужно общаться с клиентами и продавать результат",tags:["услуга","B2B","первые деньги"],days:["Сформулировать один оффер","Найти 10 потенциальных клиентов","Показать оффер и спросить реакцию","Разобрать ответы","Сделать тестовую версию","Предложить первый платный пилот","Решить: продолжать, сузить или сменить нишу"]},
-"Контент для бизнеса":{desc:"Создавать компаниям короткие видео, посты, сценарии или контент-пакеты, которые помогают привлекать внимание.",money:"Пакет из 12 единиц контента в месяц для одной ниши.",pain:"нужно регулярно делать контент и соблюдать дедлайны",tags:["контент","креатив","услуга"],days:["Выбрать одну нишу","Найти 10 бизнесов","Сделать 2 демонстрационных примера","Показать примеры и собрать реакции","Собрать тестовый пакет","Предложить пилот","Оценить спрос и стоимость"]},
-"Дизайн-пакеты для бизнеса":{desc:"Делать бизнесу визуальные материалы: карточки, презентации, баннеры, оформление или простые бренд-пакеты.",money:"Продать готовый пакет оформления за фиксированную цену.",pain:"придётся принимать правки и собирать портфолио",tags:["дизайн","визуал","проектная работа"],days:["Выбрать одну нишу","Найти 10 потенциальных клиентов","Сделать один сильный демо-макет","Показать его людям","Собрать типовые правки","Предложить пакет","Решить, какую услугу оставить"]},
-"Тексты и контент":{desc:"Писать понятные тексты для бизнеса: лендинги, посты, письма, сценарии, описания и контент-планы.",money:"Пакет текстов или контент-план для конкретной ниши.",pain:"качество сильно зависит от практики и насмотренности",tags:["тексты","контент","онлайн"],days:["Выбрать нишу","Найти 10 потенциальных клиентов","Переделать один слабый текст как демо","Показать демо","Собрать возражения","Предложить тестовый пакет","Оценить спрос"]},
-"Цифровой продукт":{desc:"Создать один полезный цифровой продукт: шаблон, набор файлов, мини-курс или инструмент под узкую проблему.",money:"Продать продукт с конкретным результатом, а не «информацию обо всём».",pain:"до первых денег часто дольше, чем у услуги",tags:["продукт","масштаб","онлайн"],days:["Выбрать узкую проблему","Поговорить с 10 потенциальными покупателями","Сформулировать обещание продукта","Проверить описание","Собрать минимальную версию","Предложить купить","Решить: дорабатывать или менять идею"]},
-"Виртуальный ассистент":{desc:"Помогать предпринимателю с рутиной: таблицы, календарь, поиск, сообщения, организация задач и операционка.",money:"Взять конкретный блок рутины на ежемесячной основе.",pain:"много операционной работы и общения",tags:["ассистент","операционка","стабильность"],days:["Выбрать тип предпринимателя","Найти 10 потенциальных клиентов","Собрать список их рутинных задач","Предложить забрать одну задачу","Сделать тест","Предложить ежемесячный формат","Оценить, нравится ли тебе модель"]}
-};
-
 let idx=0,answers={},currentIdeas=[],taskState=[],selectedRoute=null,authMode="login";
 
 function hideAll(){["landing","app","result","dashboard"].forEach(id=>document.getElementById(id).style.display="none")}
@@ -233,18 +517,38 @@ function closeApp(){hideAll();document.getElementById("landing").style.display="
 function resetApp(){openApp()}
 function renderQ(){
  const q=questions[idx],saved=answers[q.key];
- document.getElementById("qnum").textContent=`ВОПРОС ${idx+1} / ${questions.length}`;
- document.getElementById("qtitle").textContent=q.title;document.getElementById("qhint").textContent=q.hint;
+ document.getElementById("qnum").textContent=`ВОПРОС ${String(idx+1).padStart(2,"0")} / ${String(questions.length).padStart(2,"0")}`;
+ document.getElementById("qtitle").textContent=q.title;
+ document.getElementById("qhint").textContent=q.hint;
  document.getElementById("bar").style.width=(idx/questions.length*100)+"%";
  document.getElementById("back").style.visibility=idx?"visible":"hidden";
- document.getElementById("next").textContent=idx===questions.length-1?"Показать мой маршрут →":"Дальше →";
- document.getElementById("steps").innerHTML=questions.map((x,n)=>`<div class="step ${n===idx?"active":""} ${n<idx?"done":""}">${n+1}. ${x.title.slice(0,24)}${x.title.length>24?"…":""}</div>`).join("");
+ document.getElementById("next").textContent=idx===questions.length-1?"Собрать мой маршрут →":"Зафиксировать →";
+ document.getElementById("steps").innerHTML=questions.map((x,n)=>`<div class="step ${n===idx?"active":""} ${n<idx?"done":""}">${String(n+1).padStart(2,"0")} ${x.title.slice(0,24)}${x.title.length>24?"…":""}</div>`).join("");
  const box=document.getElementById("options");box.innerHTML="";
  const custom=document.getElementById("custom");
  if(q.text){custom.style.display="block";custom.value=saved||"";return}
  custom.style.display=(q.other&&Array.isArray(saved)&&saved.includes("__other__"))?"block":"none";
- q.opts.forEach(o=>{const b=document.createElement("button");b.className="opt";const sel=q.multi?(saved||[]).includes(o):saved===o;if(sel)b.classList.add("selected");b.innerHTML=o+(q.multi?"<small>можно выбрать</small>":"");b.onclick=()=>selectAnswer(o);box.appendChild(b)});
- if(q.other){const b=document.createElement("button");b.className="opt "+((saved||[]).includes("__other__")?"selected":"");b.textContent="Другое — хочу дописать";b.onclick=()=>selectAnswer("__other__");box.appendChild(b)}
+ let n=0;
+ q.opts.forEach(o=>{
+   n++;
+   const b=document.createElement("button");
+   b.className="opt";
+   b.dataset.num=String(n).padStart(2,"0");
+   const sel=q.multi?(saved||[]).includes(o):saved===o;
+   if(sel)b.classList.add("selected");
+   b.innerHTML=`<span>${o}</span>${q.multi?"<small>"+(sel?"выбрано":"можно выбрать")+"</small>":""}`;
+   b.onclick=()=>selectAnswer(o);
+   box.appendChild(b);
+ });
+ if(q.other){
+   n++;
+   const b=document.createElement("button");
+   b.className="opt "+((saved||[]).includes("__other__")?"selected":"");
+   b.dataset.num=String(n).padStart(2,"0");
+   b.innerHTML=`<span>Другое — допишу сам</span><small>свой вариант</small>`;
+   b.onclick=()=>selectAnswer("__other__");
+   box.appendChild(b);
+ }
  if(q.other&&Array.isArray(saved)&&saved.includes("__other__"))custom.value=answers[q.key+"_custom"]||"";
 }
 function selectAnswer(o){const q=questions[idx];if(q.multi){let a=answers[q.key]||[];if(a.includes(o))a=a.filter(x=>x!==o);else{if(q.max&&a.length>=q.max)return;a=[...a,o]}answers[q.key]=a}else answers[q.key]=o;renderQ()}
@@ -272,7 +576,30 @@ function scoreRoutes(a){
  return Object.entries(s).sort((x,y)=>y[1]-x[1]).map(([name,raw])=>({name,score:Math.max(52,Math.min(96,52+raw))}))
 }
 function ideaHTML(name,score,main=false){
- const r=routes[name];return `<div class="${main?"direction":"idea"}"><div class="routeTag">${main?"главный маршрут":"альтернатива"} • ${score}/100</div><h${main?"3":"4"}>${name}</h${main?"3":"4"}><p class="${main?"desc":""}">${r.desc}</p><div class="meta">${r.tags.map(t=>`<span class="chip">${t}</span>`).join("")}</div><p class="small"><b>Как заработать:</b> ${r.money}</p><p class="small"><b>Что может не понравиться:</b> ${r.pain}</p>${main?`<div class="why"><div>⚡ Можно проверить спрос без долгой подготовки.</div><div>🎯 Первая неделя заканчивается реальным сигналом, а не «изучением рынка».</div><div>🧭 Завтра появится следующий шаг — не нужно думать с нуля.</div></div>`:`<div class="ideaActions"><button class="btn secondary" onclick="chooseRoute('${name.replace(/'/g,"\\'")}')">Выбрать этот путь →</button></div>`}</div>`
+ const r=routes[name];
+ if(main){
+   return `<div class="direction">
+     <div class="routeTag">01 / ОСНОВНОЙ ХОД · ${score}/100</div>
+     <h3>${name}</h3>
+     <p class="desc">${r.desc}</p>
+     <div class="meta">${r.tags.map(t=>`<span class="chip">${t}</span>`).join("")}</div>
+     <p class="small"><b>Деньги:</b> ${r.money}</p>
+     <p class="small"><b>Обратная сторона:</b> ${r.pain}</p>
+     <div class="why">
+       <div><b>01</b> Спрос можно проверить без долгой подготовки.</div>
+       <div><b>02</b> Первая неделя заканчивается действием рынка, а не теорией.</div>
+       <div><b>03</b> Завтра уже понятно, что делать — без нового мозговыноса.</div>
+     </div>
+   </div>`;
+ }
+ return `<div class="idea">
+   <div class="routeTag">АЛЬТЕРНАТИВА · ${score}/100</div>
+   <h4>${name}</h4>
+   <p>${r.desc}</p>
+   <p class="small"><b>Деньги:</b> ${r.money}</p>
+   <p class="small"><b>Обратная сторона:</b> ${r.pain}</p>
+   <div class="ideaActions"><button class="btn secondary" onclick="chooseRoute('${name.replace(/'/g,"\\'")}')">Поставить на первое место →</button></div>
+ </div>`;
 }
 function showResult(){
  hideAll();document.getElementById("result").style.display="block";currentIdeas=scoreRoutes(answers).slice(0,3);selectedRoute=currentIdeas[0].name;
@@ -283,12 +610,13 @@ function showResult(){
 }
 function chooseRoute(name){selectedRoute=name;document.getElementById("mainIdea").innerHTML=ideaHTML(name,100,true);buildTaskState(name);renderResultTimeline();saveAssessment(name);scrollTo(0,0)}
 function showFreshIdeas(){const used=new Set(currentIdeas.map(x=>x.name));const fresh=scoreRoutes(answers).filter(x=>!used.has(x.name));if(!fresh.length){alert("Попробуй изменить пару ответов — тогда поиск получит другой профиль.");return}document.getElementById("altIdeas").innerHTML=fresh.slice(0,3).map(x=>ideaHTML(x.name,x.score)).join("")}
+
 function buildTaskState(route){const r=routes[route]||routes["Услуга для малого бизнеса"];taskState=r.days.map((title,i)=>({title:`День ${i+1}: ${title}`,done:false,id:null}));renderTasks();renderResultTimeline()}
 function renderTasks(){document.getElementById("tasks").innerHTML=taskState.slice(0,3).map((t,i)=>`<label class="task ${t.done?"done":""}"><input class="check" type="checkbox" ${t.done?"checked":""} onchange="toggleToday(${i},this.checked)"><span>${t.title}</span></label>`).join("");updateTaskProgress()}
-function toggleToday(i,v){taskState[i].done=v;renderTasks();saveTasks()}
+function toggleToday(i,v){taskState[i].done=v;localStorage.setItem("starter_last_action",Date.now());renderTasks();saveTasks()}
 function updateTaskProgress(){const p=taskState.length?Math.round(taskState.filter(x=>x.done).length/taskState.length*100):0;document.getElementById("taskbar").style.width=p+"%";document.getElementById("taskpct").textContent=p+"%"}
 function renderResultTimeline(){const days=taskState.length?taskState:[];document.getElementById("resultTimeline").innerHTML=days.map((d,i)=>`<div class="day ${d.done?"done":i===0?"current":""}"><div class="dayNum">Д${i+1}</div><div class="dayName">${d.title.replace(/^День \d+: /,"").slice(0,18)}${d.title.length>26?"…":""}</div><div class="dayStatus">${d.done?"готово":i===0?"сегодня":"дальше"}</div></div>`).join("")}
-function openAuth(){document.getElementById("authModal").style.display="flex";document.getElementById("authNotice").className="notice";document.getElementById("authNotice").textContent=sb?"Не нажимай «Создать аккаунт» повторно, если письмо уже отправлено.":"Сначала вставь Supabase URL и publishable key в код сайта.";setAuthMode("login")}
+function openAuth(){document.getElementById("authModal").style.display="flex";document.getElementById("authNotice").className="notice";document.getElementById("authNotice").textContent=sb?"Регистрация без email-кода. Пароль сохраняется в Supabase, а маршрут — в твоём аккаунте.":"Сначала подключи Supabase URL и publishable key в коде сайта.";setAuthMode("login")}
 function closeAuth(){document.getElementById("authModal").style.display="none"}
 function setAuthMode(mode){authMode=mode;document.getElementById("tabLogin").classList.toggle("active",mode==="login");document.getElementById("tabSignup").classList.toggle("active",mode==="signup");document.getElementById("authAction").textContent=mode==="login"?"Войти":"Создать аккаунт";document.getElementById("authTitle").textContent=mode==="login"?"С возвращением.":"Сохрани свой маршрут";document.getElementById("password").autocomplete=mode==="login"?"current-password":"new-password"}
 async function submitAuth(){
@@ -303,14 +631,13 @@ async function submitAuth(){
  if(res.error){
    const msg=res.error.message||"Ошибка авторизации";
    if(/rate limit|too many|over_email_send_rate_limit/i.test(msg)){
-     showAuthNotice("Supabase временно ограничил отправку писем. Мы НЕ будем повторять запрос автоматически. Для теста просто подожди и потом используй «Войти», если аккаунт уже создан. Встроенная почта Supabase имеет очень низкий лимит.","error");
+     showAuthNotice("Почта Supabase временно упёрлась в лимит. STARTER не будет долбить API повторными запросами. Если аккаунт уже создан — просто используй «Войти» позже.","error");
    }else showAuthNotice(msg,"error");
    return
  }
- if(authMode==="signup"){
-   if(res.data?.session){closeAuth();updateAuthUI();await openDashboard()}
-   else showAuthNotice("Аккаунт создан. Проверь почту и нажми ссылку подтверждения, затем вернись сюда и нажми «Войти».","good");
- }else{closeAuth();updateAuthUI();await openDashboard()}
+ if(res.data?.session){closeAuth();updateAuthUI();await openDashboard()}
+ else if(authMode==="signup"){showAuthNotice("Аккаунт создан. Если сессия не открылась автоматически — просто нажми «Войти». Подтверждение почты для MVP не требуется.","good")}
+ else {showAuthNotice("Вход выполнен, но сессия ещё не появилась. Попробуй войти ещё раз.","error")}
 }
 function showAuthNotice(t,type=""){const n=document.getElementById("authNotice");n.textContent=t;n.className="notice "+type}
 async function updateAuthUI(){if(!sb)return;const {data:{session}}=await sb.auth.getSession();const b=document.getElementById("authBtn");b.textContent=session?"Кабинет":"Войти";b.onclick=session?openDashboard:openAuth}
@@ -350,90 +677,13 @@ function renderDashboardRoute(){
  const done=taskState.filter(x=>x.done).length,p=taskState.length?Math.round(done/taskState.length*100):0,day=Math.min(7,done+1);
  document.getElementById("dashPct").textContent=p+"%";document.getElementById("dashProgressText").textContent=`Выполнено ${done} из ${taskState.length||7} дней. Следующий шаг — День ${day}.`;document.getElementById("dashBar").style.width=p+"%";document.getElementById("dashDay").textContent=`День ${day} / 7`;
  document.getElementById("dashTimeline").innerHTML=taskState.map((t,i)=>`<div class="day ${t.done?"done":i===done?"current":""}"><div class="dayNum">Д${i+1}</div><div class="dayName">${t.title.replace(/^День \d+: /,"").slice(0,18)}${t.title.length>27?"…":""}</div><div class="dayStatus">${t.done?"готово":i===done?"сейчас":"дальше"}</div></div>`).join("");
- document.getElementById("routeDays").innerHTML=taskState.map((t,i)=>`<div class="routeDay ${t.done?"done":""}"><div class="routeDayNum">${t.done?"✓":i+1}</div><div><b>${t.title.replace(/^День \d+: /,"")}</b><small>${t.done?"Шаг выполнен.":"Когда сделаешь — отметь его."}</small></div><div class="status">${t.done?"ГОТОВО":i===done?"СЕЙЧАС":"ДАЛЬШЕ"}</div></div>`).join("")
+ document.getElementById("routeDays").innerHTML=taskState.map((t,i)=>`<div class="routeDay ${t.done?"done":""}"><div class="routeDayNum">${t.done?"✓":i+1}</div><div><b>${t.title.replace(/^День \d+: /,"")}</b><small>${t.done?"Шаг выполнен.":"Когда сделаешь — отметь его."}</small></div><div><button onclick="toggleDashboardTask(${i})">${t.done?"Вернуть":"Готово"}</button></div></div>`).join("")
 }
 async function toggleDashboardTask(i){
- const t=taskState[i];t.done=!t.done;renderDashboardRoute();if(sb&&t.id){await sb.from("tasks").update({completed:t.done,completed_at:t.done?new Date().toISOString():null}).eq("id",t.id)}
+ const t=taskState[i];t.done=!t.done;localStorage.setItem("starter_last_action",Date.now());renderDashboardRoute();if(sb&&t.id){await sb.from("tasks").update({completed:t.done,completed_at:t.done?new Date().toISOString():null}).eq("id",t.id)}
 }
 function scrollToRoute(){document.getElementById("routePanel").scrollIntoView({behavior:"smooth"})}
 if(sb){sb.auth.onAuthStateChange(()=>updateAuthUI());updateAuthUI()}
-  const RESEND_API_KEY = "ТВОЙ_КЛЮЧ_RE_..."; // Вставь сюда ключ из Шага 1
-const SENDER_EMAIL = "verify@starter.com";  // Письма будут уходить от твоего домена
-
-function generateCode() {
-  return Math.floor(100000 + Math.random() * 900000).toString();
-}
-
-async function sendEmailCode(userEmail, code) {
-  const url = "https://resend.com";
-  
-  const payload = {
-    from: `Starter <${SENDER_EMAIL}>`,
-    to: [userEmail],
-    subject: "🔑 Код подтверждения регистрации",
-    html: `
-      <div style="font-family: sans-serif; padding: 20px; max-width: 500px; border: 1px solid #eee; border-radius: 10px;">
-        <h2>Добро пожаловать!</h2>
-        <p>Ваш код подтверждения для регистрации на сайте:</p>
-        <div style="font-size: 28px; font-weight: bold; color: #4F46E5; background: #F3F4F6; padding: 10px; text-align: center; border-radius: 5px; letter-spacing: 5px; margin: 20px 0;">
-          ${code}
-        </div>
-        <p style="font-size: 12px; color: #666;">Если вы не запрашивали этот код, просто проигнорируйте письмо.</p>
-      </div>
-    `
-  };
-
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Authorization": f"Bearer {RESEND_API_KEY}",
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(payload)
-  });
-
-  return response.ok;
-}
-
-export default {
-  async fetch(request, env, ctx) {
-    const corsHeaders = {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "POST, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type",
-    };
-
-    if (request.method === "OPTIONS") {
-      return new Response(null, { headers: corsHeaders });
-    }
-
-    if (request.method === "POST") {
-      try {
-        const data = await request.json();
-        const userEmail = data.email;
-        
-        if (!userEmail) {
-          return new Response(JSON.stringify({ error: "Email не указан" }), { status: 400, headers: corsHeaders });
-        }
-
-        const code = generateCode();
-        const isSent = await sendEmailCode(userEmail, code);
-        
-        if (isSent) {
-          return new Response(JSON.stringify({ success: true, code: code }), {
-            headers: { ...corsHeaders, "Content-Type": "application/json" }
-          });
-        } else {
-          return new Response(JSON.stringify({ error: "Ошибка отправки шлюза" }), { status: 500, headers: corsHeaders });
-        }
-      } catch (err) {
-        return new Response(JSON.stringify({ error: err.message }), { status: 500, headers: corsHeaders });
-      }
-    }
-
-    return new Response("API active", { status: 200 });
-  }
-};
 </script>
 </body>
 </html>
